@@ -27,12 +27,13 @@ html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{font-family:var(--font-body);background:var(--c-bg);color:var(--c-ink);font-size:16px;line-height:1.9;letter-spacing:.02em;line-break:strict;overflow-wrap:anywhere;text-wrap:pretty;padding-block-end:60px}
 @media(min-width:768px){body{padding-block-end:0}}
 img{max-width:100%;height:auto;display:block}a{color:inherit}
-h1,h2,h3{font-family:var(--font-display);font-weight:900;line-height:1.45;letter-spacing:.01em;font-feature-settings:"palt";text-wrap:balance}
+h1,h2,h3{font-family:var(--font-display);font-weight:900;line-height:1.4;letter-spacing:.01em;font-feature-settings:"palt";text-wrap:balance;overflow-wrap:normal;word-break:normal}
 h2{font-size:clamp(22px,4.6vw,32px);margin-block-end:var(--sp-3)}h3{font-size:clamp(16px,3vw,19px);margin-block-end:var(--sp-1)}
 .ph{display:inline-block}p{max-width:var(--w-text)}
 .container{max-width:var(--w-content);margin-inline:auto;padding-inline:20px}
 section{padding-block:var(--sp-8)}@media(min-width:768px){section{padding-block:var(--sp-12)}}
-.eyebrow{color:var(--c-accent);font-size:13px;letter-spacing:.16em;font-weight:700;display:block;margin-block-end:var(--sp-1)}
+.eyebrow{color:var(--c-accent);font-size:12px;letter-spacing:.2em;font-weight:700;display:inline-flex;align-items:center;gap:10px;margin-block-end:var(--sp-2)}
+.eyebrow::before{content:"";width:26px;height:1px;background:currentColor;opacity:.7}
 .lead{font-size:clamp(15px,2.3vw,18px);color:var(--c-ink-soft);max-width:var(--w-text)}
 .hdr{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--c-bg) 92%,transparent);backdrop-filter:blur(8px);border-block-end:1px solid var(--c-line)}
 .hdr .in{display:flex;align-items:center;justify-content:space-between;min-height:56px}
@@ -42,9 +43,10 @@ section{padding-block:var(--sp-8)}@media(min-width:768px){section{padding-block:
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:13px 28px;border-radius:var(--radius);font-weight:900;font-size:16px;text-decoration:none;border:1px solid transparent;cursor:pointer}
 .btn-primary{background:var(--c-accent);color:var(--c-accent-ink)}.btn-ghost{border-color:#ffffff44;color:#fff}
 .hero{background:linear-gradient(160deg,#20222a,#0f1013);position:relative;overflow:hidden}
-.hero::after{content:"";position:absolute;inset:0;opacity:.5;background:repeating-linear-gradient(120deg,transparent 0 30px,rgba(224,138,43,.05) 30px 31px)}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(80% 60% at 80% 0%,rgba(224,138,43,.16),transparent 60%)}
 .hero .container{position:relative;z-index:1;padding-block:var(--sp-12) var(--sp-8)}
-.hero h1{font-size:clamp(27px,6.2vw,46px);line-height:1.45}.hero h1 .hl{color:var(--c-accent)}
+.hero h1{font-size:clamp(28px,6.6vw,50px);line-height:1.3}
+.hero h1 .hl{color:var(--c-accent);background:linear-gradient(transparent 62%,rgba(224,138,43,.26) 62%);padding-inline:.05em}
 .hero .sub{margin-block-start:var(--sp-3);color:var(--c-ink-soft);max-width:31em}
 .hero .btns{display:flex;gap:12px;flex-wrap:wrap;margin-block-start:var(--sp-4)}
 .hero .note{margin-block-start:var(--sp-3);font-size:13px;color:#9aa0a8}
@@ -114,7 +116,7 @@ section{padding-block:var(--sp-8)}@media(min-width:768px){section{padding-block:
       <div class="c reveal"><div class="k">求人媒体</div><div class="v">20〜50万<span style="font-size:14px;color:var(--c-ink-soft)">/月</span></div><div class="d">掲載しても応募が来る保証はなく、運用は自分。</div></div>
       <div class="c us reveal"><div class="k">BURNING RECRUIT</div><div class="v">月8〜15万</div><div class="d">応募が来る「仕組み」を月額で持つ。運用は当社が代行。</div></div>
     </div>
-    <p class="lead" style="margin-block-start:var(--sp-3)">※ 当社は「募集の仕組みの提供と運用事務代行」です。候補者の選別・推薦・採否には関与しません（募集主体は御社）。</p>
+    <p class="lead" style="margin-block-start:var(--sp-3)">※ 金額はいずれも一般的な相場の目安で、実額は業種・地域・条件で変わります。当社は「募集の仕組みの提供と運用事務代行」です。候補者の選別・推薦・採否には関与しません（募集主体は御社）。</p>
   </div>
 </section>
 
@@ -185,6 +187,7 @@ section{padding-block:var(--sp-8)}@media(min-width:768px){section{padding-block:
 <footer class="ft"><div class="container">
   <p>BURNING RECRUIT ／ 採用支援（採用LP・AI応募受付・応募者管理・月次レポート）｜NEXT GROWTH ／ BURNING BROS.</p>
   <p style="margin-block-start:8px">当社は募集の仕組み提供・運用事務代行であり、有料職業紹介事業ではありません。掲載のデモは架空の会社です。</p>
+  <p style="margin-block-start:8px;color:var(--c-ink-soft);font-size:13px">運営：山口県岩国市の NEXT GROWTH ／ BURNING BROS.。自分たちも軽貨物運送でドライバー募集を行う当事者として、実際に使う採用の仕組みをつくっています。</p>
 </div></footer>
 
 <div class="bar">
