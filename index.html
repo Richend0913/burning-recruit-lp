@@ -70,6 +70,8 @@ section{padding-block:var(--sp-8)}@media(min-width:768px){section{padding-block:
 /* what */
 .grid2{display:grid;gap:var(--sp-3);margin-block-start:var(--sp-4)}
 @media(min-width:768px){.grid2{grid-template-columns:1fr 1fr;gap:var(--sp-4)}}
+.grid3{display:grid;gap:var(--sp-3);margin-block-start:var(--sp-4)}
+@media(min-width:768px){.grid3{grid-template-columns:repeat(3,1fr);gap:var(--sp-3)}}
 .feat{background:var(--c-surface);border:1px solid var(--c-line);border-radius:var(--radius);padding:var(--sp-3)}
 .feat h3{color:var(--c-ink)}.feat p{color:var(--c-ink-soft);font-size:14.5px;margin-block-start:4px}
 .feat .num{font-family:var(--font-display);color:var(--c-accent);font-weight:900;font-size:13px;letter-spacing:.1em}
@@ -134,20 +136,26 @@ section{padding-block:var(--sp-8)}@media(min-width:768px){section{padding-block:
 <section class="hero" id="top" style="padding:0">
   <div class="container">
     <span class="eyebrow">運送・建設・現場系の中小企業へ</span>
-    <h1><span class="ph">紹介会社に50万払う前に、</span><span class="ph"><span class="hl">応募が来る仕組み</span>を月額で。</span></h1>
-    <p class="sub">求人広告に毎月払い続けるのをやめて、「正直な採用LP＋24時間AI応募受付＋月次レポート」を持ちませんか。制作も運用も当社が代行。応募数は保証しない、誠実な設計です。</p>
+    <h1><span class="ph">運送・建設の採用を、</span><span class="ph"><span class="hl">採用ページ＋24時間応募受付</span>で仕組み化する。</span></h1>
+    <p class="sub">応募が来ない、電話に出られない時間に応募を逃す、応募の管理がバラバラ——その困りごとを、採用ページの制作と24時間の応募受付の仕組みで受け止めます。制作も運用も当社が代行。応募数は保証しない、誠実な設計です。</p>
     <div class="btns">
-      <a class="btn btn-primary" href="#demo">採用LPのデモを見る</a>
+      <a class="btn btn-primary" href="#contact">無料お試しを相談する</a>
       <a class="btn btn-ghost" href="#price">料金を見る</a>
     </div>
-    <p class="note">初期30万＋月額 ／ いつでも解約可 ／ 応募データはお店のもの</p>
+    <p class="note">お試し3ヶ月は月額無料（費用は継続時のみ）／ いつでも解約可 ／ 応募データは御社のもの</p>
   </div>
 </section>
 
-<section id="why">
+<section id="problem">
   <div class="container">
-    <span class="eyebrow">お金の話を正直に</span>
-    <h2><span class="ph">採用に、</span><span class="ph">払い続けていませんか。</span></h2>
+    <span class="eyebrow">課題</span>
+    <h2><span class="ph">採用の困りごとは、</span><span class="ph">だいたいこの3つです。</span></h2>
+    <div class="grid3">
+      <div class="feat reveal"><h3>応募がそもそも来ない</h3><p>求人媒体に載せても、自社の条件や働き方が伝わらず、応募につながらない。掲載の運用も自分たちでやるしかありません。</p></div>
+      <div class="feat reveal"><h3>電話に出られない時間に応募を逃す</h3><p>運転中・作業中・夜間や休日は、電話に出られません。その間に来た「気になる」という気持ちが、そのまま離れてしまいます。</p></div>
+      <div class="feat reveal"><h3>応募の管理が媒体ごとにバラバラ</h3><p>媒体・電話など窓口が分散して、誰が応募して、どこまで進んだのかが分からなくなる。対応の漏れも起きがちです。</p></div>
+    </div>
+    <p class="lead" style="margin-block-start:var(--sp-6)">そのうえ採用のたびに大きな費用がかかる構造も、現場の負担になっています。</p>
     <div class="cmp">
       <div class="c reveal"><div class="k">人材紹介会社</div><div class="v">50〜100万<span style="font-size:14px;color:var(--c-ink-soft)">/1人</span></div><div class="d">採用のたびに成功報酬。1人辞めるとまた同額。</div></div>
       <div class="c reveal"><div class="k">求人媒体</div><div class="v">20〜50万<span style="font-size:14px;color:var(--c-ink-soft)">/月</span></div><div class="d">掲載しても応募が来る保証はなく、運用は自分。</div></div>
@@ -157,35 +165,30 @@ section{padding-block:var(--sp-8)}@media(min-width:768px){section{padding-block:
   </div>
 </section>
 
-<section style="background:var(--c-surface);border-block:1px solid var(--c-line)">
+<section id="service" style="background:var(--c-surface);border-block:1px solid var(--c-line)">
   <div class="container">
-    <span class="eyebrow">納品するもの</span>
-    <h2><span class="ph">「応募が来る仕組み」の</span><span class="ph">中身です。</span></h2>
+    <span class="eyebrow">提供内容</span>
+    <h2><span class="ph">納品するのは、</span><span class="ph">この4つです。</span></h2>
     <div class="grid2">
-      <div class="feat reveal"><div class="num">01</div><h3>正直な採用LP</h3><p>手取りシミュレータ（経費を引いた後の数字）と、盛らない条件開示表。「面談で聞いてた話と違う」を無くすのが、早期離職を減らす近道です。</p></div>
-      <div class="feat reveal"><div class="num">02</div><h3>24時間AI応募受付</h3><p>夜間・休日の「気になる」を逃さず、条件の質問に即答。名前と連絡先を伺って、御社にすぐ通知。採否はAIでは判断しません。</p></div>
-      <div class="feat reveal"><div class="num">03</div><h3>応募者管理（CSV）</h3><p>応募一覧をCSVで。御社のスプレッドシートに貼るだけ。個人情報は目的内利用・最小収集です。</p></div>
+      <div class="feat reveal"><div class="num">01</div><h3>採用ページ制作</h3><p>手取りシミュレータ（経費を引いた後の数字）と、盛らない条件開示表のある、正直な採用LPを制作します。「面談で聞いてた話と違う」を無くすのが、早期離職を減らす近道です。</p></div>
+      <div class="feat reveal"><div class="num">02</div><h3>24時間応募受付</h3><p>AI受付が夜間・休日の「気になる」を逃さず、条件の質問に即答。名前と連絡先を伺って、御社にすぐ通知。採否はAIでは判断しません。</p></div>
+      <div class="feat reveal"><div class="num">03</div><h3>応募者一覧（CSV）</h3><p>応募一覧をCSVでお渡し。御社のスプレッドシートに貼るだけ。個人情報は目的内利用・最小収集です。</p></div>
       <div class="feat reveal"><div class="num">04</div><h3>月次レポート</h3><p>「閲覧→シミュレータ→応募」のどこで落ちているかと、応募単価（月額÷応募数）を毎月。改善提案を1つ添えます。</p></div>
     </div>
   </div>
 </section>
 
-<section id="demo" class="demo">
-  <div class="container">
-    <span class="eyebrow">実物を見てください</span>
-    <h2>採用LPのデモ（軽貨物ドライバー募集）</h2>
-    <p class="lead">当社が作る採用LPのサンプルです（架空の会社）。手取りシミュレータを動かし、右下のAI応募受付に「未経験でも大丈夫？」と聞いてみてください。</p>
-    <a class="card" href="https://demo-recruit.pages.dev/" target="_blank" rel="noopener">
-      <span><b>コスモ軽貨物｜ドライバー募集</b><small>手取りシミュレータ＋条件開示＋AI応募受付（架空・デモ）</small></span>
-      <span class="btn btn-primary">デモを開く →</span>
-    </a>
-  </div>
-</section>
-
 <section id="flow">
   <div class="container">
-    <span class="eyebrow">導入の流れ</span>
-    <h2>ヒアリングから運用まで</h2>
+    <span class="eyebrow">応募の流れ</span>
+    <h2><span class="ph">求職者が見てから、</span><span class="ph">応募が御社に届くまで。</span></h2>
+    <div class="steps">
+      <div class="step reveal"><h3>求職者が採用ページを見る</h3><p>給与・条件・1日の流れと、手取りシミュレータで「自分の場合はいくら残るか」を確認します。</p></div>
+      <div class="step reveal"><h3>気になったら、その場で応募</h3><p>24時間応募受付が条件の質問に答え、名前と連絡先を伺います。夜間・休日でも、電話をかける手間はありません。</p></div>
+      <div class="step reveal"><h3>応募が御社にすぐ通知される</h3><p>運転中・作業中で電話に出られない時間の応募も、そのまま御社に届きます。</p></div>
+      <div class="step reveal"><h3>応募者一覧で管理、面談は御社で</h3><p>応募はCSVの一覧でお渡しします。面談・採否の判断は御社でお願いします（当社は選考には関与しません）。</p></div>
+    </div>
+    <h3 style="margin-block-start:var(--sp-8)">導入の流れ（ご利用開始まで）</h3>
     <div class="steps">
       <div class="step reveal"><h3>ヒアリング（60分）</h3><p>雇用か業務委託か、条件、現在の採用コストを正直に伺います。</p></div>
       <div class="step reveal"><h3>法務チェック＋制作</h3><p>職安法・フリーランス新法に沿った表記で採用LPを制作。AI応募受付を設定。</p></div>
@@ -198,7 +201,7 @@ section{padding-block:var(--sp-8)}@media(min-width:768px){section{padding-block:
 <section id="price" style="background:var(--c-surface);border-block:1px solid var(--c-line)">
   <div class="container">
     <span class="eyebrow">料金</span>
-    <h2>料金</h2>
+    <h2><span class="ph">料金プランと、</span><span class="ph">お試し条件です。</span></h2>
     <div class="grid2">
       <div class="feat reveal"><h3>ライト</h3><div style="font-family:var(--font-display);font-weight:900;font-size:28px;color:var(--c-accent);margin-block:6px 2px">月 80,000円</div><p style="font-size:13px">初期 300,000円 ／ 採用LP＋AI応募受付＋応募CSV＋月次レポート</p></div>
       <div class="feat reveal" style="border-color:var(--c-accent)"><h3>スタンダード</h3><div style="font-family:var(--font-display);font-weight:900;font-size:28px;color:var(--c-accent);margin-block:6px 2px">月 120,000円</div><p style="font-size:13px">初期 300,000円 ／ ライト＋多言語対応＋Indeed等の媒体運用代行</p></div>
@@ -213,6 +216,24 @@ section{padding-block:var(--sp-8)}@media(min-width:768px){section{padding-block:
     </div>
     <div class="honest">
       <b>正直にお伝えします。</b> <b>応募数は保証しません。</b>3ヶ月応募がゼロなら、契約の休止をこちらから提案します。いつでも解約でき、応募データは御社のものです。当社は候補者の選別・推薦・採否には関与しません（それをやると有料職業紹介の許可が必要になり、線引きを守るためです）。実績は現在、自社（BURNING BROS.）で積み上げ中です——数字が出てから胸を張ってご提案します。実際に自社で運用している仕組みの実物は、こちらで公開しています。<a href="case.html" style="color:var(--c-accent);font-weight:900;text-decoration:underline;text-underline-offset:3px">自社事例を見る →</a>
+    </div>
+  </div>
+</section>
+
+<section id="case">
+  <div class="container">
+    <span class="eyebrow">事例と実物</span>
+    <h2><span class="ph">第1号の導入事例は、</span><span class="ph">当社自身です。</span></h2>
+    <p class="lead">この仕組みは、軽貨物運送の当事者である BURNING BROS. が自社のドライバー募集で実際に使っているものです。実績の数字は現在積み上げ中のため、盛った事例紹介はしません。運用中の実物と、納品イメージのデモをご覧ください。</p>
+    <div class="demo" style="margin-block-start:var(--sp-2)">
+      <a class="card" id="demo" href="https://demo-recruit.pages.dev/" target="_blank" rel="noopener">
+        <span><b>採用LPのデモ｜コスモ軽貨物（ドライバー募集）</b><small>当社が作る採用LPのサンプルです（架空の会社）。手取りシミュレータを動かし、右下のAI応募受付に「未経験でも大丈夫？」と聞いてみてください。</small></span>
+        <span class="btn btn-primary">デモを開く →</span>
+      </a>
+      <a class="card" href="case.html" style="margin-block-start:var(--sp-3)">
+        <span><b>自社事例｜BURNING BROS. のドライバー募集</b><small>実際に運用している採用の仕組みと、正直な現状を公開しています。</small></span>
+        <span class="btn btn-ghost">事例を見る →</span>
+      </a>
     </div>
   </div>
 </section>
