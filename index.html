@@ -94,6 +94,35 @@ section{padding-block:var(--sp-8)}@media(min-width:768px){section{padding-block:
 .bar .l{background:#2a2e36;color:#fff}.bar .p{background:var(--c-accent);color:var(--c-accent-ink)}
 @media(min-width:768px){.bar{display:none}}
 .reveal{opacity:0;transform:translateY(16px);transition:.6s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}
+/* faq */
+.faq details{background:var(--c-surface);border:1px solid var(--c-line);border-radius:var(--radius);padding:var(--sp-2) var(--sp-3);margin-block-start:var(--sp-2)}
+.faq summary{cursor:pointer;font-weight:900;font-size:15.5px}
+.faq details p{color:var(--c-ink-soft);font-size:14.5px;margin-block-start:6px}
+/* inquiry form */
+.inq{max-width:640px;margin:var(--sp-4) auto 0;text-align:left}
+.inq .fld{margin-block-end:var(--sp-2)}
+.inq label{display:block;font-size:13px;font-weight:700;margin-block-end:6px}
+.inq .req{color:var(--c-accent);font-size:11px;margin-inline-start:6px;border:1px solid var(--c-accent);border-radius:4px;padding:0 5px;vertical-align:1px}
+.inq input[type="text"],.inq input[type="email"],.inq input[type="tel"],.inq select,.inq textarea{width:100%;background:var(--c-surface);border:1px solid var(--c-line);border-radius:var(--radius);color:var(--c-ink);padding:12px 14px;font:inherit;font-size:15px}
+.inq textarea{min-height:120px;resize:vertical}
+.inq input:focus,.inq select:focus,.inq textarea:focus{outline:2px solid var(--c-accent);outline-offset:1px}
+.inq .consent{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--c-ink-soft);font-weight:400;margin-block-end:0}
+.inq .consent input{margin-top:5px;width:18px;height:18px;flex-shrink:0;accent-color:var(--c-accent)}
+.inq .consent a{color:var(--c-accent);text-decoration:underline}
+.inq .submit{width:100%;margin-block-start:var(--sp-2)}
+.inq .submit:disabled{opacity:.55;cursor:wait}
+.inq .msg{display:none;border-radius:var(--radius);padding:var(--sp-2) var(--sp-3);font-size:14px;margin-block-start:var(--sp-3)}
+.inq .msg.ok{display:block;background:#123524;border:1px solid #2f7d4f;color:#cdeeda}
+.inq .msg.err{display:block;background:#3d1a12;border:1px solid #8a4326;color:#f3d3c5}
+.fineprint{font-size:12px;color:#9aa0a8;margin-block-start:var(--sp-2)}
+.hp-field{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+/* company */
+.company dl{display:grid;gap:0;max-width:640px;margin-block-start:var(--sp-3);border-block-start:1px solid var(--c-line)}
+.company .row{display:grid;grid-template-columns:110px 1fr;gap:var(--sp-2);padding-block:12px;border-block-end:1px solid var(--c-line);font-size:14.5px}
+.company dt{color:var(--c-ink-soft);font-weight:700}
+.company dd{color:var(--c-ink)}
+.ft .links{display:flex;gap:18px;flex-wrap:wrap;margin-block-start:var(--sp-2);font-size:13px}
+.ft .links a{text-decoration:underline;text-underline-offset:3px}
 </style>
 </head>
 <body>
@@ -180,15 +209,84 @@ section{padding-block:var(--sp-8)}@media(min-width:768px){section{padding-block:
   </div>
 </section>
 
+<section id="faq" class="faq" style="scroll-margin-top:56px">
+  <div class="container">
+    <span class="eyebrow">よくある質問</span>
+    <h2>契約の前に、正直に答えます</h2>
+    <details><summary>契約期間はありますか。解約はできますか。</summary><p>最低契約期間は設けていません。解約はいつでも可能です。集まった応募データは御社のものですので、解約後も御社でお使いいただけます。</p></details>
+    <details><summary>支払い方法を教えてください。</summary><p>お支払い方法はご契約時にご案内します。料金は初期費用300,000円＋月額（ライト80,000円／スタンダード120,000円）です。</p></details>
+    <details><summary>応募数は保証してもらえますか。</summary><p>保証はしません。盛らない条件開示で「条件に合った応募」を集める設計です。なお、3ヶ月応募がゼロの場合は、契約の休止をこちらから提案します。</p></details>
+    <details><summary>選考や面接の代行もお願いできますか。</summary><p>できません。当社は候補者の選別・推薦・採否には関与しません（それを行うには有料職業紹介の許可が必要で、線引きを守るためです）。当社の担当は、募集の仕組みの提供と運用事務の代行までです。採否の判断は御社でお願いします。</p></details>
+    <details><summary>対応している業種・エリアはどこですか。</summary><p>運送・建設・現場系の中小企業を中心に対応しています。当社自身が軽貨物運送でドライバー募集を行う当事者で、その現場の採用の困りごとを前提に設計しています。</p></details>
+    <details><summary>導入までの流れを教えてください。</summary><p>ご相談 → ヒアリング（60分、条件と現在の採用コストを伺います）→ 法務チェックのうえ採用LPを制作し、AI応募受付を設定 → 公開・応募受付開始 → 毎月のレポートと改善提案、という流れです。</p></details>
+  </div>
+</section>
+
 <section id="contact" class="cta-sec" style="scroll-margin-top:56px">
   <div class="container">
     <span class="eyebrow" style="color:#f0b979">お問い合わせ</span>
     <h2><span class="ph">まずは、今の採用の</span><span class="ph">困りごとから。</span></h2>
     <p class="lead" style="margin-inline:auto">「応募が来ない」「すぐ辞める」の背景を伺い、採用LPのデモをお見せします。しつこい営業はしません。</p>
-    <div class="btns">
-      <a class="btn btn-primary" href="mailto:next.growth0913@gmail.com?subject=BURNING%20RECRUIT%20相談">メールで相談する</a>
-      <a class="btn btn-ghost" href="https://lin.ee/8rR88pb" target="_blank" rel="noopener">LINEで相談する</a>
-    </div>
+    <!-- フォーム送信は formsubmit.co 経由で next.growth0913@gmail.com へ届きます。
+         初回送信時に formsubmit から有効化（activation）メールがその受信箱に届くので、運営側で一度だけリンクをクリックして有効化してください。 -->
+    <form class="inq" id="inquiry-form" novalidate>
+      <div class="fld">
+        <label for="f-company">会社名<span class="req">必須</span></label>
+        <input type="text" id="f-company" name="会社名" autocomplete="organization" required>
+      </div>
+      <div class="fld">
+        <label for="f-name">担当者名<span class="req">必須</span></label>
+        <input type="text" id="f-name" name="担当者名" autocomplete="name" required>
+      </div>
+      <div class="fld">
+        <label for="f-email">メールアドレス<span class="req">必須</span></label>
+        <input type="email" id="f-email" name="メールアドレス" autocomplete="email" required>
+      </div>
+      <div class="fld">
+        <label for="f-tel">電話番号</label>
+        <input type="tel" id="f-tel" name="電話番号" autocomplete="tel">
+      </div>
+      <div class="fld">
+        <label for="f-size">従業員規模</label>
+        <select id="f-size" name="従業員規模">
+          <option value="">選択してください</option>
+          <option>1〜9名</option>
+          <option>10〜29名</option>
+          <option>30〜49名</option>
+          <option>50〜99名</option>
+          <option>100名以上</option>
+          <option>未定・その他</option>
+        </select>
+      </div>
+      <div class="fld">
+        <label for="f-message">相談内容</label>
+        <textarea id="f-message" name="相談内容" placeholder="例：ドライバーの応募が月に1件あるかないかで困っています。"></textarea>
+      </div>
+      <div class="fld hp-field" aria-hidden="true">
+        <label>この欄は入力しないでください<input type="text" id="f-honey" name="_honey" tabindex="-1" autocomplete="off"></label>
+      </div>
+      <div class="fld">
+        <label class="consent"><input type="checkbox" id="f-consent" required><span><a href="privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a>に同意します<span class="req">必須</span></span></label>
+      </div>
+      <button type="submit" class="btn btn-primary submit" id="f-submit">この内容で相談する</button>
+      <p class="msg" id="f-msg" role="status" aria-live="polite"></p>
+      <p class="fineprint">フォームが送信できない場合は、メール <a href="mailto:next.growth0913@gmail.com?subject=BURNING%20RECRUIT%20%E7%9B%B8%E8%AB%87">next.growth0913@gmail.com</a> へ直接ご連絡いただくか、<a href="https://lin.ee/8rR88pb" target="_blank" rel="noopener">LINEでのご相談</a>も可能です。</p>
+    </form>
+  </div>
+</section>
+
+<section id="company" class="company" style="scroll-margin-top:56px">
+  <div class="container">
+    <span class="eyebrow">運営者情報</span>
+    <h2>運営者について</h2>
+    <dl>
+      <div class="row"><dt>事業者名</dt><dd>NEXT GROWTH ／ BURNING BROS.</dd></div>
+      <div class="row"><dt>所在地</dt><dd>山口県岩国市</dd></div>
+      <div class="row"><dt>電話</dt><dd><a href="tel:08089560913">080-8956-0913</a></dd></div>
+      <div class="row"><dt>メール</dt><dd><a href="mailto:next.growth0913@gmail.com">next.growth0913@gmail.com</a></dd></div>
+      <div class="row"><dt>事業内容</dt><dd>採用支援サービス「BURNING RECRUIT」の運営（採用LP制作・AI応募受付・応募者管理・月次レポート）</dd></div>
+    </dl>
+    <p class="fineprint">当社は募集の仕組みの提供と運用事務の代行を行う事業者であり、有料職業紹介事業ではありません。候補者の選別・推薦・採否には関与しません。</p>
   </div>
 </section>
 
@@ -197,16 +295,67 @@ section{padding-block:var(--sp-8)}@media(min-width:768px){section{padding-block:
   <p style="margin-block-start:8px">当社は募集の仕組み提供・運用事務代行であり、有料職業紹介事業ではありません。掲載のデモは架空の会社です。</p>
   <p style="margin-block-start:8px;color:var(--c-ink-soft);font-size:13px">運営：山口県岩国市の NEXT GROWTH ／ BURNING BROS.。自分たちも軽貨物運送でドライバー募集を行う当事者として、実際に使う採用の仕組みをつくっています。</p>
   <p style="margin-block-start:8px;color:var(--c-ink-soft);font-size:13px">お問い合わせ：電話 <a href="tel:08089560913">080-8956-0913</a>（BURNING BROS. 採用担当）／メール <a href="mailto:next.growth0913@gmail.com?subject=BURNING%20RECRUIT%20%E7%9B%B8%E8%AB%87">next.growth0913@gmail.com</a></p>
+  <nav class="links">
+    <a href="#contact">お問い合わせフォーム</a>
+    <a href="#faq">よくある質問</a>
+    <a href="#company">運営者情報</a>
+    <a href="privacy.html">プライバシーポリシー</a>
+  </nav>
 </div></footer>
 
 <div class="bar">
-  <a class="l" href="mailto:next.growth0913@gmail.com?subject=BURNING%20RECRUIT%20相談">メール相談</a>
+  <a class="l" href="#contact">フォーム相談</a>
   <a class="p" href="#demo">デモを見る</a>
 </div>
 
 <script>
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.14});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+<script>
+(function(){
+  var form=document.getElementById('inquiry-form');
+  if(!form)return;
+  var msg=document.getElementById('f-msg');
+  var btn=document.getElementById('f-submit');
+  function show(text,ok){
+    msg.textContent=text;
+    msg.className='msg '+(ok?'ok':'err');
+  }
+  form.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    // honeypot: bot が入力していたら送信せず成功表示だけ返す
+    if(document.getElementById('f-honey').value){show('送信しました。内容を確認のうえ、担当よりご連絡します。',true);form.reset();return;}
+    if(!form.checkValidity()){show('必須項目（会社名・担当者名・メールアドレス）とプライバシーポリシーへの同意をご確認ください。',false);form.reportValidity();return;}
+    var data={
+      _subject:'BURNING RECRUIT 相談（LPフォーム）',
+      _template:'table',
+      '会社名':document.getElementById('f-company').value.trim(),
+      '担当者名':document.getElementById('f-name').value.trim(),
+      'メールアドレス':document.getElementById('f-email').value.trim(),
+      '電話番号':document.getElementById('f-tel').value.trim(),
+      '従業員規模':document.getElementById('f-size').value,
+      '相談内容':document.getElementById('f-message').value.trim()
+    };
+    btn.disabled=true;btn.textContent='送信中…';
+    fetch('https://formsubmit.co/ajax/next.growth0913@gmail.com',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify(data)
+    }).then(function(res){
+      if(!res.ok)throw new Error('HTTP '+res.status);
+      return res.json();
+    }).then(function(){
+      if(window.gtag)gtag('event','inquiry_submit',{page_area:'burning-recruit'});
+      show('送信しました。内容を確認のうえ、担当よりご連絡します。しつこい営業はしませんのでご安心ください。',true);
+      form.reset();
+    }).catch(function(){
+      show('送信に失敗しました。お手数ですが、メール next.growth0913@gmail.com へ直接ご連絡ください。',false);
+    }).finally(function(){
+      btn.disabled=false;btn.textContent='この内容で相談する';
+    });
+  });
+})();
 </script>
 </body>
 </html>
