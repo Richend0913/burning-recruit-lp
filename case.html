@@ -20,8 +20,8 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23161616'/%3E%3Ctext x='16' y='22' font-size='15' text-anchor='middle' fill='%23e08a2b' font-family='sans-serif'%3ER%3C/text%3E%3C/svg%3E">
 <style>
 :root{
-  --c-accent:#e08a2b; --c-accent-ink:#1a1206; --c-bg:#15161a; --c-surface:#1e2026;
-  --c-ink:#f2efe9; --c-ink-soft:#a7aab0; --c-line:#333842;
+  --c-accent:#e08a2b; --c-accent-ink:#1a1206; --c-bg:#ffffff; --c-surface:#f6f7f9;
+  --c-ink:#1c1f24; --c-ink-soft:#596069; --c-line:#dde1e6;
   --font-display:"Noto Sans JP","Hiragino Kaku Gothic ProN","BIZ UDPGothic",Meiryo,sans-serif;
   --font-body:"Noto Sans JP","Hiragino Kaku Gothic ProN","BIZ UDPGothic",Meiryo,sans-serif;
   --radius:8px;--sp-1:8px;--sp-2:16px;--sp-3:24px;--sp-4:32px;--sp-6:48px;--sp-8:64px;--sp-12:96px;
@@ -45,8 +45,8 @@ section{padding-block:var(--sp-8)}@media(min-width:768px){section{padding-block:
 .brand span{color:var(--c-accent)}
 .hdr .cta{background:var(--c-accent);color:var(--c-accent-ink);text-decoration:none;padding:9px 16px;border-radius:6px;font-size:14px;font-weight:900;white-space:nowrap;flex-shrink:0}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:13px 28px;border-radius:var(--radius);font-weight:900;font-size:16px;text-decoration:none;border:1px solid transparent;cursor:pointer}
-.btn-primary{background:var(--c-accent);color:var(--c-accent-ink)}.btn-ghost{border-color:#ffffff44;color:#fff}
-.hero{background:linear-gradient(160deg,#20222a,#0f1013);position:relative;overflow:hidden}
+.btn-primary{background:var(--c-accent);color:var(--c-accent-ink)}.btn-ghost{border-color:var(--c-line);color:var(--c-ink);background:#fff}
+.hero{background:linear-gradient(160deg,#ffffff,#eef0f3);position:relative;overflow:hidden}
 .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(80% 60% at 80% 0%,rgba(224,138,43,.16),transparent 60%)}
 .hero .container{position:relative;z-index:1;padding-block:var(--sp-12) var(--sp-8)}
 .hero h1{font-size:clamp(28px,6.6vw,50px);line-height:1.3}
@@ -58,17 +58,17 @@ section{padding-block:var(--sp-8)}@media(min-width:768px){section{padding-block:
 .grid3{display:grid;gap:var(--sp-3);margin-block-start:var(--sp-4)}
 @media(min-width:768px){.grid3{grid-template-columns:repeat(3,1fr)}}
 .feat{background:var(--c-surface);border:1px solid var(--c-line);border-radius:var(--radius);padding:var(--sp-3)}
-.feat h3{color:#fff}.feat p{color:var(--c-ink-soft);font-size:14.5px;margin-block-start:4px}
+.feat h3{color:var(--c-ink)}.feat p{color:var(--c-ink-soft);font-size:14.5px;margin-block-start:4px}
 .feat .num{font-family:var(--font-display);color:var(--c-accent);font-weight:900;font-size:13px;letter-spacing:.1em}
 /* demo cta */
-.demo .card{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--sp-3);border:1px solid var(--c-accent);border-radius:var(--radius);padding:var(--sp-4);margin-block-start:var(--sp-3);background:linear-gradient(160deg,#20222a,#17181c);text-decoration:none}
+.demo .card{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--sp-3);border:1px solid var(--c-accent);border-radius:var(--radius);padding:var(--sp-4);margin-block-start:var(--sp-3);background:linear-gradient(160deg,#ffffff,#f6f7f9);text-decoration:none}
 .demo .card b{font-family:var(--font-display);font-size:18px}
 .demo .card small{display:block;color:var(--c-ink-soft);font-size:13px;margin-block-start:4px}
-.honest{background:#241c10;border:1px solid #5a4322;border-radius:var(--radius);padding:var(--sp-3);margin-block-start:var(--sp-4);font-size:13.5px;color:#e6d3b0}
-.honest b{color:#fff}
-.cta-sec{background:linear-gradient(160deg,#20222a,#0f1013);text-align:center}
+.honest{background:#fdf6ea;border:1px solid #e3c48c;border-radius:var(--radius);padding:var(--sp-3);margin-block-start:var(--sp-4);font-size:13.5px;color:#5f4a1f}
+.honest b{color:#3d2f10}
+.cta-sec{background:linear-gradient(160deg,#ffffff,#eef0f3);text-align:center}
 .cta-sec .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-block-start:var(--sp-4)}
-.ft{background:#0d0e11;color:#8a8f97;font-size:12.5px;padding-block:var(--sp-6)}.ft a{color:inherit}
+.ft{background:#eef0f3;color:#596069;font-size:12.5px;padding-block:var(--sp-6)}.ft a{color:inherit}
 .ft .links{display:flex;gap:18px;flex-wrap:wrap;margin-block-start:var(--sp-2);font-size:13px}
 .ft .links a{text-decoration:underline;text-underline-offset:3px}
 .body-txt{color:var(--c-ink-soft);font-size:15px;max-width:44em}
@@ -139,7 +139,7 @@ section{padding-block:var(--sp-8)}@media(min-width:768px){section{padding-block:
   <div class="container">
     <span class="eyebrow">運用方針</span>
     <h2>自社でも貫いている原則</h2>
-    <p class="body-txt">この仕組みは「応募数を保証する」ものではありません。それはお客様へのご提案でも、自社の運用でも同じです。代わりに貫いているのは、<b style="color:#fff">条件を正直に開示すること</b>です。単価・経費・手取りの考え方を盛らずに出すからこそ、条件を理解したうえでの応募が集まり、面談後のミスマッチや早期離職が減る——その考え方で、自社の採用ページも作っています。</p>
+    <p class="body-txt">この仕組みは「応募数を保証する」ものではありません。それはお客様へのご提案でも、自社の運用でも同じです。代わりに貫いているのは、<b style="color:var(--c-ink)">条件を正直に開示すること</b>です。単価・経費・手取りの考え方を盛らずに出すからこそ、条件を理解したうえでの応募が集まり、面談後のミスマッチや早期離職が減る——その考え方で、自社の採用ページも作っています。</p>
     <div class="honest">
       <b>数字について、正直にお伝えします。</b>具体的な応募実績の数字は、まだここには載せていません。計測を統一したのが2026年11月のため、比較できる形のデータはこれから貯まっていく段階です。<b>計測を統一した2026年11月以降のデータが貯まり次第、応募数などの実績をこのページに公開します。</b>盛った数字を出すくらいなら、出せるようになってから出す——それがこのサービスのやり方です。
     </div>
@@ -148,7 +148,7 @@ section{padding-block:var(--sp-8)}@media(min-width:768px){section{padding-block:
 
 <section class="cta-sec">
   <div class="container">
-    <span class="eyebrow" style="color:#f0b979">お問い合わせ</span>
+    <span class="eyebrow" style="color:var(--c-accent)">お問い合わせ</span>
     <h2><span class="ph">同じ仕組みを、</span><span class="ph">御社の採用にも。</span></h2>
     <p class="lead" style="margin-inline:auto">自社で使っている構成のまま、御社の条件に合わせて制作・運用します。まずは今の採用の困りごとをお聞かせください。しつこい営業はしません。</p>
     <div class="btns">
