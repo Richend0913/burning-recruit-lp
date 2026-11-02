@@ -49,19 +49,24 @@ import { problems, compareRows } from '../data/content';
 
 <style>
   .after {
-    margin-block-start: clamp(40px, 6vw, 56px);
+    margin-block-start: 48px;
   }
+  /* 料金比較は「仕様表」として白パネルに載せる */
   .cmp {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     margin-block-start: 28px;
     font-size: 15px;
-    border-block-start: 1px solid var(--ink);
-    border-block-end: 1px solid var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
   }
   .cmp th,
   .cmp td {
-    padding: 18px 4px;
+    padding: 20px 24px;
     text-align: left;
     vertical-align: baseline;
     border-block-end: 1px solid var(--line-soft);
@@ -78,13 +83,15 @@ import { problems, compareRows } from '../data/content';
     width: 22%;
   }
   .cmp-price {
+    font-family: var(--font-num);
     font-weight: 800;
-    font-size: clamp(19px, 3.6vw, 25px);
+    font-size: 24px;
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
     width: 24%;
   }
   .cmp-unit {
+    font-family: var(--font);
     font-size: 13px;
     font-weight: 500;
     color: var(--ink-3);
@@ -94,16 +101,19 @@ import { problems, compareRows } from '../data/content';
     color: var(--ink-2);
     font-size: 14px;
   }
+  .cmp tr.us {
+    background: var(--accent-tint);
+  }
   .cmp tr.us th,
   .cmp tr.us .cmp-price {
-    color: var(--accent-dark);
+    color: var(--accent);
   }
   @media (max-width: 640px) {
     .cmp tr {
       display: grid;
       grid-template-columns: 1fr auto;
       align-items: baseline;
-      padding-block: 16px;
+      padding: 18px 20px;
       border-block-end: 1px solid var(--line-soft);
     }
     .cmp tr:last-child {
@@ -121,7 +131,7 @@ import { problems, compareRows } from '../data/content';
       white-space: normal;
     }
     .cmp-price {
-      font-size: 18px;
+      font-size: 19px;
       text-align: right;
     }
     .cmp-desc {

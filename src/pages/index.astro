@@ -66,6 +66,15 @@ const footerLinks = [
 </BaseLayout>
 
 <style>
+  /* ヒーローの実物パネルが食い込む分、直後セクションの上余白を広げる */
+  :global(#problem) {
+    padding-block-start: calc(var(--section-pad) + 56px);
+  }
+  @media (min-width: 860px) {
+    :global(#problem) {
+      padding-block-start: calc(var(--section-pad) + 80px);
+    }
+  }
   .ft-contact {
     margin-block-start: 10px;
     max-width: 52rem;

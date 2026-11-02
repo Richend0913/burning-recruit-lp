@@ -64,47 +64,52 @@ import { plans, jobsUrl } from '../data/content';
 
 <style>
   .plans {
-    border-block-start: 1px solid var(--ink);
-    margin-block-start: clamp(28px, 4vw, 40px);
+    display: grid;
+    gap: 20px;
   }
   .plan {
     display: grid;
-    gap: 4px;
-    padding-block: 26px;
-    border-block-end: 1px solid var(--line-soft);
+    gap: 6px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: var(--shadow-md);
+    padding: 28px;
   }
-  .plan:last-child {
-    border-block-end: 1px solid var(--ink);
+  .plan--rec {
+    border: 2px solid var(--accent);
   }
   .plan-name {
     font-weight: 800;
     font-size: 17px;
     letter-spacing: 0.03em;
-    display: flex;
-    align-items: baseline;
-    gap: 14px;
-    flex-wrap: wrap;
   }
   .plan--rec .plan-price {
-    color: var(--accent-dark);
+    color: var(--accent);
   }
   .plan-price {
+    font-family: var(--font-num);
     white-space: nowrap;
     font-weight: 800;
-    font-size: clamp(26px, 5vw, 34px);
+    font-size: 32px;
     font-variant-numeric: tabular-nums;
-    letter-spacing: 0.02em;
-    line-height: 1.4;
+    letter-spacing: 0.01em;
+    line-height: 1.35;
   }
   .plan-note {
     color: var(--ink-2);
     font-size: 13.5px;
+    line-height: 1.8;
   }
   @media (min-width: 860px) {
+    .plans {
+      grid-template-columns: 1fr 1fr;
+    }
     .plan {
-      grid-template-columns: 12em 12em 1fr;
-      align-items: baseline;
-      column-gap: 32px;
+      padding: 32px;
+    }
+    .plan-price {
+      font-size: 36px;
     }
     .plan-note {
       font-size: 14px;
@@ -112,16 +117,22 @@ import { plans, jobsUrl } from '../data/content';
   }
 
   .block {
-    margin-block-start: clamp(36px, 5vw, 48px);
+    margin-block-start: 24px;
     max-width: 52rem;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
+    padding: 26px 28px;
   }
   .block h3 {
-    font-size: clamp(18px, 3vw, 21px);
+    font-size: var(--fs-h3);
     margin-block-end: 10px;
   }
   .block p {
     color: var(--ink-2);
     font-size: 15px;
+    line-height: 1.85;
     max-width: var(--w-text);
   }
   .block p strong {
@@ -129,6 +140,6 @@ import { plans, jobsUrl } from '../data/content';
   }
 
   .honest {
-    margin-block-start: clamp(36px, 5vw, 48px);
+    margin-block-start: 24px;
   }
 </style>

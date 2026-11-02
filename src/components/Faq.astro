@@ -26,12 +26,16 @@ import { faqItems } from '../data/content';
 
 <style>
   .faq-list {
+    display: grid;
+    gap: 12px;
     max-width: 46rem;
-    border-block-start: 1px solid var(--line);
   }
   details {
-    border-block-end: 1px solid var(--line-soft);
-    padding-block: 20px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
+    padding: 20px 24px;
   }
   summary {
     font-weight: 700;
@@ -50,7 +54,7 @@ import { faqItems } from '../data/content';
   summary::after {
     content: '＋';
     font-weight: 400;
-    color: var(--ink-3);
+    color: var(--accent);
     font-size: 15px;
     flex: none;
   }
@@ -60,6 +64,7 @@ import { faqItems } from '../data/content';
   details p {
     color: var(--ink-2);
     font-size: 15px;
+    line-height: 1.85;
     margin-block-start: 10px;
     max-width: var(--w-text);
   }
