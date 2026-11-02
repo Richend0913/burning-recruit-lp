@@ -1,0 +1,18 @@
+---
+import Phrases from './Phrases.astro';
+
+interface Props {
+  no?: string;
+  label: string;
+  title?: string;
+  lead?: string;
+}
+
+const { no, label, title, lead } = Astro.props;
+---
+
+<div class="section-head">
+  <p class="section-label">{no && <span class="no">{no}</span>}{label}</p>
+  {title && <h2><Phrases text={title} /></h2>}
+  {lead && <p class="lead"><Phrases text={lead} /></p>}
+</div>

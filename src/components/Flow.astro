@@ -1,0 +1,50 @@
+---
+import SectionHead from './SectionHead.astro';
+import Phrases from './Phrases.astro';
+import { flowSteps, introSteps } from '../data/content';
+---
+
+<section class="section" id="flow">
+  <div class="container">
+    <SectionHead no="03" label="応募の流れ" title="求職者が見てから、応募が御社に届くまで。" />
+    <div class="steps steps--2col">
+      {
+        flowSteps.map((s, i) => (
+          <div class="step-item">
+            <span class="sno">{i + 1}</span>
+            <h3>
+              <Phrases text={s.title} />
+            </h3>
+            <p>
+              <Phrases text={s.body} />
+            </p>
+          </div>
+        ))
+      }
+    </div>
+
+    <h3 class="sub-title"><Phrases text="導入の流れ（ご利用開始まで）" /></h3>
+    <div class="steps steps--2col">
+      {
+        introSteps.map((s, i) => (
+          <div class="step-item">
+            <span class="sno">{i + 1}</span>
+            <h3>
+              <Phrases text={s.title} />
+            </h3>
+            <p>
+              <Phrases text={s.body} />
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .sub-title {
+    font-size: clamp(18px, 3vw, 21px);
+    margin-block-start: clamp(48px, 7vw, 72px);
+  }
+</style>

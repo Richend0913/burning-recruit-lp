@@ -1,0 +1,33 @@
+---
+import SectionHead from './SectionHead.astro';
+import { demoUrl } from '../data/content';
+---
+
+<section class="section" id="case">
+  <div class="container">
+    <SectionHead
+      no="05"
+      label="事例と実物"
+      title="第1号の導入事例は、当社自身です。"
+      lead="この仕組みは、軽貨物運送の当事者である BURNING BROS. が自社のドライバー募集で実際に使っているものです。実績の数字は現在積み上げ中のため、盛った事例紹介はしません。運用中の実物と、納品イメージのデモをご覧ください。"
+    />
+    <div class="link-rows">
+      <a class="link-row" id="demo" href={demoUrl} target="_blank" rel="noopener">
+        <span class="lr-main">
+          <span class="lr-title">採用LPのデモ｜コスモ軽貨物（ドライバー募集）</span>
+          <span class="lr-desc"
+            >当社が作る採用LPのサンプルです（架空の会社）。手取りシミュレータを動かし、右下のAI応募受付に「未経験でも大丈夫？」と聞いてみてください。</span
+          >
+        </span>
+        <span class="lr-go">デモを開く →</span>
+      </a>
+      <a class="link-row" href="case.html">
+        <span class="lr-main">
+          <span class="lr-title">自社事例｜BURNING BROS. のドライバー募集</span>
+          <span class="lr-desc">実際に運用している採用の仕組みと、正直な現状を公開しています。</span>
+        </span>
+        <span class="lr-go">事例を見る →</span>
+      </a>
+    </div>
+  </div>
+</section>

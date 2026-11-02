@@ -1,0 +1,27 @@
+---
+/**
+ * 日本語の文節境界でのみ改行させるためのコンポーネント。
+ * BudouX で文を文節に分割し、各文節を inline-block 化することで、
+ * 文節の途中では絶対に折り返さない（文節の境界だけが改行位置になる）。
+ */
+import { loadDefaultJapaneseParser } from 'budoux';
+
+interface Props {
+  text: string;
+}
+
+const parser = loadDefaultJapaneseParser();
+const { text } = Astro.props;
+const phrases = parser.parse(text);
+---
+
+{
+  phrases.map((p) => <span class="ph">{p}</span>)
+}
+
+<style>
+  .ph {
+    display: inline-block;
+    max-width: 100%;
+  }
+</style>

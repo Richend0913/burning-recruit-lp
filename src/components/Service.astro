@@ -1,0 +1,26 @@
+---
+import SectionHead from './SectionHead.astro';
+import Phrases from './Phrases.astro';
+import { features } from '../data/content';
+---
+
+<section class="section section--alt" id="service">
+  <div class="container">
+    <SectionHead no="02" label="提供内容" title="納品するのは、この4つです。" />
+    <div class="rows rows--2col">
+      {
+        features.map((f) => (
+          <div class="row-item">
+            <span class="num">{f.no}</span>
+            <h3>
+              <Phrases text={f.title} />
+            </h3>
+            <p>
+              <Phrases text={f.body} />
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

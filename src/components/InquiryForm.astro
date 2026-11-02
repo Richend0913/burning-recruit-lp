@@ -1,0 +1,198 @@
+---
+import SectionHead from './SectionHead.astro';
+import { lineUrl } from '../data/content';
+---
+
+<section class="section" id="contact">
+  <div class="container">
+    <SectionHead
+      no="07"
+      label="お問い合わせ"
+      title="まずは、今の採用の困りごとから。"
+      lead="「応募が来ない」「すぐ辞める」の背景を伺い、採用LPのデモをお見せします。しつこい営業はしません。"
+    />
+    <!-- フォーム送信は formsubmit.co 経由で mimoria.inc@gmail.com へ届きます。
+         初回送信時に formsubmit から有効化（activation）メールがその受信箱に届くので、運営側で一度だけリンクをクリックして有効化してください。 -->
+    <form class="inq" id="inquiry-form" novalidate>
+      <div class="fld">
+        <label for="f-company">会社名<span class="req">必須</span></label>
+        <input type="text" id="f-company" name="会社名" autocomplete="organization" required />
+      </div>
+      <div class="fld">
+        <label for="f-name">担当者名<span class="req">必須</span></label>
+        <input type="text" id="f-name" name="担当者名" autocomplete="name" required />
+      </div>
+      <div class="fld">
+        <label for="f-email">メールアドレス<span class="req">必須</span></label>
+        <input type="email" id="f-email" name="メールアドレス" autocomplete="email" required />
+      </div>
+      <div class="fld">
+        <label for="f-tel">電話番号</label>
+        <input type="tel" id="f-tel" name="電話番号" autocomplete="tel" />
+      </div>
+      <div class="fld">
+        <label for="f-size">従業員規模</label>
+        <select id="f-size" name="従業員規模">
+          <option value="">選択してください</option>
+          <option>1〜9名</option>
+          <option>10〜29名</option>
+          <option>30〜49名</option>
+          <option>50〜99名</option>
+          <option>100名以上</option>
+          <option>未定・その他</option>
+        </select>
+      </div>
+      <div class="fld">
+        <label for="f-message">相談内容</label>
+        <textarea
+          id="f-message"
+          name="相談内容"
+          placeholder="例：ドライバーの応募が月に1件あるかないかで困っています。"
+        ></textarea>
+      </div>
+      <div class="fld hp-field" aria-hidden="true">
+        <label
+          >この欄は入力しないでください<input
+            type="text"
+            id="f-honey"
+            name="_honey"
+            tabindex="-1"
+            autocomplete="off"
+          /></label
+        >
+      </div>
+      <div class="fld">
+        <label class="consent">
+          <input type="checkbox" id="f-consent" required />
+          <span>
+            <a href="privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a
+            >に同意します<span class="req">必須</span>
+          </span>
+        </label>
+      </div>
+      <button type="submit" class="btn btn--primary submit" id="f-submit">この内容で相談する</button>
+      <p class="msg" id="f-msg" role="status" aria-live="polite"></p>
+      <p class="fineprint">
+        フォームが送信できない場合は、メール <a
+          href="mailto:mimoria.inc@gmail.com?subject=MIMORIA%20RECRUIT%20%E7%9B%B8%E8%AB%87"
+          >mimoria.inc@gmail.com</a
+        > へ直接ご連絡いただくか、<a href={lineUrl} target="_blank" rel="noopener"
+          >LINEでのご相談</a
+        >も可能です。
+      </p>
+    </form>
+  </div>
+</section>
+
+<script>
+  import '../scripts/inquiry';
+</script>
+
+<style>
+  .inq {
+    max-width: 640px;
+    margin-block-start: clamp(28px, 4vw, 40px);
+  }
+  .fld {
+    margin-block-end: 20px;
+  }
+  .inq label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    margin-block-end: 7px;
+  }
+  .req {
+    color: var(--accent-dark);
+    font-size: 11px;
+    margin-inline-start: 7px;
+    border: 1px solid var(--accent-dark);
+    border-radius: 2px;
+    padding: 0 5px;
+    vertical-align: 1px;
+  }
+  .inq input[type='text'],
+  .inq input[type='email'],
+  .inq input[type='tel'],
+  .inq select,
+  .inq textarea {
+    width: 100%;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    color: var(--ink);
+    padding: 12px 14px;
+    font: inherit;
+    font-size: 15px;
+  }
+  .inq textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  .inq input:focus,
+  .inq select:focus,
+  .inq textarea:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+  .inq .consent {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 13.5px;
+    color: var(--ink-2);
+    font-weight: 400;
+    margin-block-end: 0;
+  }
+  .inq .consent input {
+    margin-top: 5px;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    accent-color: var(--accent);
+  }
+  .inq .consent a {
+    color: var(--accent-dark);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .submit {
+    width: 100%;
+  }
+  .submit:disabled {
+    opacity: 0.55;
+    cursor: wait;
+  }
+  .msg {
+    display: none;
+    border-radius: 2px;
+    padding: 14px 18px;
+    font-size: 14px;
+    margin-block-start: 20px;
+  }
+  .msg.ok {
+    display: block;
+    background: #e9f4ec;
+    border: 1px solid #7fb894;
+    color: #175c33;
+  }
+  .msg.err {
+    display: block;
+    background: #fdeeea;
+    border: 1px solid #d89a86;
+    color: #842f1c;
+  }
+  .fineprint {
+    font-size: 12.5px;
+    color: var(--ink-3);
+    margin-block-start: 14px;
+  }
+  .hp-field {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+</style>

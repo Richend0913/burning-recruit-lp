@@ -1,0 +1,134 @@
+---
+import SectionHead from './SectionHead.astro';
+import Phrases from './Phrases.astro';
+import { plans, jobsUrl } from '../data/content';
+---
+
+<section class="section section--alt" id="price">
+  <div class="container">
+    <SectionHead no="04" label="料金" title="料金プランと、お試し条件です。" />
+
+    <div class="plans">
+      {
+        plans.map((plan) => (
+          <div class={plan.recommended ? 'plan plan--rec' : 'plan'}>
+            <p class="plan-name">{plan.name}</p>
+            <p class="plan-price">{plan.price}</p>
+            <p class="plan-note">{plan.note}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="block">
+      <h3><Phrases text="まずは3ヶ月のお試し期間から" /></h3>
+      <p>
+        <Phrases
+          text="いきなりの長期契約は求めません。まずは3ヶ月のお試し期間から開始できます。"
+        /><strong
+          ><Phrases
+            text="お試し期間（3ヶ月）は月額料金無料。初期費用・月額料金は、お試し期間終了後に継続（本契約へ移行）する場合にのみ発生します。お試しのみで終了すれば、費用は一切かかりません。"
+          /></strong
+        ><Phrases
+          text="期間中はいつでも解約できます。3ヶ月使ってみて、数字と手応えを見てから続けるかどうかをご判断ください。"
+        />
+      </p>
+    </div>
+
+    <div class="block">
+      <h3><Phrases text="ご契約特典" /></h3>
+      <p>
+        <Phrases text="ご契約中はもちろん、お試し期間中も、求人サイト " /><a
+          class="a-link"
+          href={jobsUrl}
+          target="_blank"
+          rel="noopener">MIMORIA JOBS</a
+        ><Phrases
+          text=" への求人掲載が無料です。採用LPに加えて求人サイトにも求人を掲載し、応募の入口を広げられます（掲載無料の特典付き）。"
+        />
+      </p>
+    </div>
+
+    <div class="notice honest">
+      <p>
+        <strong>正直にお伝えします。</strong>
+        <strong>応募数は保証しません。</strong
+        >3ヶ月応募がゼロなら、契約の休止をこちらから提案します。いつでも解約でき、応募データは御社のものです。当社は候補者の選別・推薦・採否には関与しません（それをやると有料職業紹介の許可が必要になり、線引きを守るためです）。実績は現在、自社（BURNING
+        BROS.）で積み上げ中です——数字が出てから胸を張ってご提案します。実際に自社で運用している仕組みの実物は、こちらで公開しています。<a
+          href="case.html">自社事例を見る →</a
+        >
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .plans {
+    border-block-start: 1px solid var(--ink);
+    margin-block-start: clamp(28px, 4vw, 40px);
+  }
+  .plan {
+    display: grid;
+    gap: 4px;
+    padding-block: 26px;
+    border-block-end: 1px solid var(--line-soft);
+  }
+  .plan:last-child {
+    border-block-end: 1px solid var(--ink);
+  }
+  .plan-name {
+    font-weight: 800;
+    font-size: 17px;
+    letter-spacing: 0.03em;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .plan--rec .plan-price {
+    color: var(--accent-dark);
+  }
+  .plan-price {
+    white-space: nowrap;
+    font-weight: 800;
+    font-size: clamp(26px, 5vw, 34px);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+  }
+  .plan-note {
+    color: var(--ink-2);
+    font-size: 13.5px;
+  }
+  @media (min-width: 860px) {
+    .plan {
+      grid-template-columns: 12em 12em 1fr;
+      align-items: baseline;
+      column-gap: 32px;
+    }
+    .plan-note {
+      font-size: 14px;
+    }
+  }
+
+  .block {
+    margin-block-start: clamp(36px, 5vw, 48px);
+    max-width: 52rem;
+  }
+  .block h3 {
+    font-size: clamp(18px, 3vw, 21px);
+    margin-block-end: 10px;
+  }
+  .block p {
+    color: var(--ink-2);
+    font-size: 15px;
+    max-width: var(--w-text);
+  }
+  .block p strong {
+    color: var(--ink);
+  }
+
+  .honest {
+    margin-block-start: clamp(36px, 5vw, 48px);
+  }
+</style>

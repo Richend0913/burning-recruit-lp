@@ -1,0 +1,1 @@
+{"dependencies":{"astro":"^5.13.0","budoux":"^0.6.4"},"devDependencies":{"playwright-core":"^1.55.0"},"name":"burning-recruit-lp","private":true,"scripts":{"build":"astro build","dev":"astro dev","preview":"astro preview"},"type":"module","version":"1.0.0"}

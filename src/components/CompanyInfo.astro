@@ -1,0 +1,59 @@
+---
+import SectionHead from './SectionHead.astro';
+import { contactTel, contactTelHref, contactEmail } from '../data/content';
+
+const rows = [
+  { dt: '事業者名', dd: '株式会社MIMORIA' },
+  { dt: '所在地', dd: '神奈川県横浜市' },
+  { dt: '電話', dd: contactTel, href: contactTelHref },
+  { dt: 'メール', dd: contactEmail, href: `mailto:${contactEmail}` },
+  {
+    dt: '事業内容',
+    dd: '採用支援サービス「MIMORIA RECRUIT」の運営（採用LP制作・AI応募受付・応募者管理・月次レポート）',
+  },
+];
+---
+
+<section class="section" id="company">
+  <div class="container">
+    <SectionHead no="08" label="運営者情報" title="運営者について" />
+    <dl class="company">
+      {
+        rows.map((row) => (
+          <div class="row">
+            <dt>{row.dt}</dt>
+            <dd>{row.href ? <a href={row.href}>{row.dd}</a> : row.dd}</dd>
+          </div>
+        ))
+      }
+    </dl>
+    <p class="fineprint">
+      当社は募集の仕組みの提供と運用事務の代行を行う事業者であり、有料職業紹介事業ではありません。候補者の選別・推薦・採否には関与しません。
+    </p>
+  </div>
+</section>
+
+<style>
+  .company {
+    max-width: 640px;
+    border-block-start: 1px solid var(--ink);
+  }
+  .company .row {
+    display: grid;
+    grid-template-columns: 6.5em 1fr;
+    gap: 16px;
+    padding-block: 14px;
+    border-block-end: 1px solid var(--line-soft);
+    font-size: 14.5px;
+  }
+  .company dt {
+    color: var(--ink-2);
+    font-weight: 700;
+  }
+  .fineprint {
+    font-size: 12.5px;
+    color: var(--ink-3);
+    margin-block-start: 18px;
+    max-width: 44em;
+  }
+</style>

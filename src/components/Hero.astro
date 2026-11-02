@@ -1,0 +1,66 @@
+---
+import Phrases from './Phrases.astro';
+---
+
+<section class="hero" id="top">
+  <div class="container">
+    <p class="hero-eyebrow">運送・建設・現場系の中小企業へ</p>
+    <h1 class="hero-title">
+      <Phrases text="運送・建設の採用を、" /><span class="hl"
+        ><Phrases text="採用ページ＋24時間応募受付" /></span
+      ><Phrases text="で仕組み化する。" />
+    </h1>
+    <p class="hero-sub">
+      <Phrases
+        text="応募が来ない、電話に出られない時間に応募を逃す、応募の管理がバラバラ——その困りごとを、採用ページの制作と24時間の応募受付の仕組みで受け止めます。制作も運用も当社が代行。応募数は保証しない、誠実な設計です。"
+      />
+    </p>
+    <div class="hero-btns">
+      <a class="btn btn--primary" href="#contact">無料お試しを相談する</a>
+      <a class="btn btn--ghost" href="#price">料金を見る</a>
+    </div>
+    <p class="hero-note">お試し3ヶ月は月額無料（費用は継続時のみ）／ いつでも解約可 ／ 応募データは御社のもの</p>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: clamp(56px, 9vw, 104px) clamp(52px, 8vw, 84px);
+  }
+  .hero-eyebrow {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--accent-dark);
+    margin-block-end: 22px;
+  }
+  .hero-title {
+    font-size: clamp(29px, 6.8vw, 50px);
+    line-height: 1.42;
+    max-width: 15em;
+  }
+  .hero-title .hl {
+    color: var(--accent-dark);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 0.14em;
+    text-underline-offset: 0.14em;
+  }
+  .hero-sub {
+    margin-block-start: 26px;
+    color: var(--ink-2);
+    font-size: clamp(15px, 2.2vw, 17px);
+    max-width: 36em;
+  }
+  .hero-btns {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-block-start: 34px;
+  }
+  .hero-note {
+    margin-block-start: 20px;
+    font-size: 13px;
+    color: var(--ink-3);
+  }
+</style>

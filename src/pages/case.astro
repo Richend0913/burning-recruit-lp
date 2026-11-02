@@ -1,0 +1,202 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHead from '../components/SectionHead.astro';
+import Phrases from '../components/Phrases.astro';
+import { caseIssues, caseSystem, caseLiveLinks } from '../data/content';
+
+const footerLinks = [
+  { href: 'index.html', label: 'トップ' },
+  { href: 'case.html', label: '導入事例（自社）' },
+  { href: 'index.html#contact', label: 'お問い合わせフォーム' },
+  { href: 'index.html#faq', label: 'よくある質問' },
+  { href: 'index.html#company', label: '運営者情報' },
+  { href: 'privacy.html', label: 'プライバシーポリシー' },
+];
+---
+
+<BaseLayout
+  title="導入事例No.1：自社（BURNING BROS.）｜MIMORIA RECRUIT｜株式会社MIMORIA"
+  description="MIMORIA RECRUIT の導入事例 No.1 は、運営会社である自社 BURNING BROS. のドライバー募集です。正直な採用LP・24時間の応募受付・エリア別ページ・GA4計測統一という、販売している仕組みそのものを自分たちで運用しています。"
+  canonical="https://richend0913.github.io/burning-recruit-lp/case.html"
+  gaArea="burning-recruit"
+  ogType="article"
+  ogTitle="導入事例No.1：自社（BURNING BROS.）｜MIMORIA RECRUIT"
+  ogDescription="まず、自分たちが使っている仕組みです。自社のドライバー募集で運用している採用LP・応募受付・計測の実物をご覧ください。"
+  brandHref="index.html"
+  ctaHref="index.html#contact"
+  footerNotes={[
+    'このページの事例は、運営会社である当社自身の採用活動です。掲載リンク先は実際に公開・運用中のページです。',
+  ]}
+  footerLinks={footerLinks}
+>
+  <section class="hero" id="top">
+    <div class="container">
+      <p class="hero-eyebrow">導入事例 No.1</p>
+      <h1 class="hero-title">
+        <Phrases text="まず、" /><span class="hl"><Phrases text="自分たちが使っている" /></span
+        ><Phrases text="仕組みです。" />
+      </h1>
+      <p class="hero-sub">
+        <Phrases
+          text="事例 No.1 は、運営会社である自社 BURNING BROS. の軽貨物ドライバー募集です。MIMORIA RECRUIT が販売している「正直な採用LP＋応募受付＋計測」の仕組みを、他人に勧める前に、自分たちの採用でそのまま運用しています。このページは、その実物への案内です。"
+        />
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="issues">
+    <div class="container">
+      <SectionHead label="導入前の課題" title="自社の採用にも、同じ困りごとがありました" />
+      <div class="rows rows--3col">
+        {
+          caseIssues.map((item) => (
+            <div class="row-item">
+              <h3>
+                <Phrases text={item.title} />
+              </h3>
+              <p>
+                <Phrases text={item.body} />
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="system">
+    <div class="container">
+      <SectionHead
+        label="導入した仕組み"
+        title="販売しているものと、同じ構成です"
+        lead="特別な内製版ではありません。MIMORIA RECRUIT が御社に納品するものと同じ構成要素を、自社採用に導入しています。"
+      />
+      <div class="rows rows--2col">
+        {
+          caseSystem.map((f) => (
+            <div class="row-item">
+              <span class="num">{f.no}</span>
+              <h3>
+                <Phrases text={f.title} />
+              </h3>
+              <p>
+                <Phrases text={f.body} />
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="live">
+    <div class="container">
+      <SectionHead
+        label="実際の公開ページ"
+        title="実物は、今も公開・運用中です"
+        lead="資料ではなく、実際にドライバー募集に使っている公開ページです。手取りシミュレータや条件開示の実物をご覧ください。"
+      />
+      <div class="link-rows">
+        {
+          caseLiveLinks.map((link) => (
+            <a class="link-row" href={link.href} target="_blank" rel="noopener">
+              <span class="lr-main">
+                <span class="lr-title">{link.title}</span>
+                <span class="lr-desc">{link.desc}</span>
+              </span>
+              <span class="lr-go">公開ページを見る →</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="policy">
+    <div class="container">
+      <SectionHead label="運用方針" title="自社でも貫いている原則" />
+      <p class="body-txt">
+        この仕組みは「応募数を保証する」ものではありません。それはお客様へのご提案でも、自社の運用でも同じです。代わりに貫いているのは、<strong
+          >条件を正直に開示すること</strong
+        >です。単価・経費・手取りの考え方を盛らずに出すからこそ、条件を理解したうえでの応募が集まり、面談後のミスマッチや早期離職が減る——その考え方で、自社の採用ページも作っています。
+      </p>
+      <div class="notice honest">
+        <p>
+          <strong>数字について、正直にお伝えします。</strong
+          >具体的な応募実績の数字は、まだここには載せていません。計測を統一したのが2026年11月のため、比較できる形のデータはこれから貯まっていく段階です。<strong
+            >計測を統一した2026年11月以降のデータが貯まり次第、応募数などの実績をこのページに公開します。</strong
+          >盛った数字を出すくらいなら、出せるようになってから出す——それがこのサービスのやり方です。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-sec">
+    <div class="container">
+      <SectionHead label="お問い合わせ" title="同じ仕組みを、御社の採用にも。" />
+      <p class="lead cta-lead">
+        <Phrases
+          text="自社で使っている構成のまま、御社の条件に合わせて制作・運用します。まずは今の採用の困りごとをお聞かせください。しつこい営業はしません。"
+        />
+      </p>
+      <div class="cta-btns">
+        <a class="btn btn--primary" href="index.html#contact">相談する</a>
+        <a class="btn btn--ghost" href="index.html#price">料金を見る</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-block: clamp(56px, 9vw, 104px) clamp(52px, 8vw, 84px);
+  }
+  .hero-eyebrow {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--accent-dark);
+    margin-block-end: 22px;
+  }
+  .hero-title {
+    font-size: clamp(29px, 6.8vw, 50px);
+    line-height: 1.42;
+    max-width: 15em;
+  }
+  .hero-title .hl {
+    color: var(--accent-dark);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 0.14em;
+    text-underline-offset: 0.14em;
+  }
+  .hero-sub {
+    margin-block-start: 26px;
+    color: var(--ink-2);
+    font-size: clamp(15px, 2.2vw, 17px);
+    max-width: 40em;
+  }
+  .body-txt {
+    color: var(--ink-2);
+    font-size: 15px;
+    max-width: 44em;
+  }
+  .body-txt strong {
+    color: var(--ink);
+  }
+  .honest {
+    margin-block-start: clamp(32px, 5vw, 44px);
+  }
+  .cta-sec .section-head {
+    margin-block-end: 0;
+  }
+  .cta-lead {
+    margin-block-start: 0;
+  }
+  .cta-btns {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-block-start: 30px;
+  }
+</style>
