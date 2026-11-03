@@ -1,6 +1,8 @@
 /**
- * お問い合わせフォーム送信（formsubmit.co 経由で info@mimoria.jp へ）。
- * 初回送信時に formsubmit から有効化（activation）メールがその受信箱に届くので、
+ * お問い合わせフォーム送信。
+ * 主経路: mimoria-forms Worker（KV保存）へ {lp, fields} を POST。
+ * 副経路: 主経路が失敗（通信エラー / 非2xx）した場合のみ formsubmit.co 経由で info@mimoria.jp へ。
+ * 副経路の formsubmit は、初回送信時に有効化（activation）メールがその受信箱に届くので、
  * 運営側で一度だけリンクをクリックして有効化すること。
  * 送信者への自動返信（_autoresponse）も、この一度きりの有効化が完了してから機能する。
  */
@@ -56,15 +58,24 @@ if (form) {
     };
     btn.disabled = true;
     btn.textContent = '送信中…';
-    fetch('https://formsubmit.co/ajax/info@mimoria.jp', {
+    fetch('https://mimoria-forms.burningbros.workers.dev/v1/form', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify(data),
+      body: JSON.stringify({ lp: 'recruit', fields: data }),
     })
       .then((res) => {
         if (!res.ok) throw new Error('HTTP ' + res.status);
-        return res.json();
       })
+      .catch(() =>
+        fetch('https://formsubmit.co/ajax/info@mimoria.jp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(data),
+        }).then((res) => {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return res.json();
+        }),
+      )
       .then(() => {
         if (window.gtag) window.gtag('event', 'inquiry_submit', { page_area: 'burning-recruit' });
         show(
