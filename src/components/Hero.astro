@@ -270,4 +270,51 @@ const checks = [
       aspect-ratio: 1 / 1;
     }
   }
+  /* SP: 写真先行ヒーロー。フル幅写真の上部（空側）にアイブロウ＋見出しを重ねる */
+  @media (max-width: 859.98px) {
+    .hero {
+      padding-block-start: 0;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .hero-photo {
+      grid-area: 1 / 1;
+      position: relative;
+      margin-block-start: 0;
+      aspect-ratio: 4 / 4.7;
+      min-height: 470px;
+    }
+    .hero-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.93) 0%,
+        rgba(255, 255, 255, 0.82) 34%,
+        rgba(255, 255, 255, 0.38) 62%,
+        rgba(255, 255, 255, 0) 82%
+      );
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      grid-area: 1 / 1;
+      align-self: start;
+      position: relative;
+      z-index: 2;
+      margin-block-start: 22px;
+    }
+    .hero-title {
+      grid-area: 1 / 1;
+      align-self: start;
+      position: relative;
+      z-index: 2;
+      margin-block-start: 59px;
+    }
+    .hero-sub {
+      margin-block-start: 24px;
+    }
+  }
 </style>
