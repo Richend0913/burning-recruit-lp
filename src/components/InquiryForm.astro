@@ -4,7 +4,6 @@ import { lineUrl } from '../data/content';
 ---
 
 <section class="section" id="contact">
-  <div class="mesh" aria-hidden="true"></div>
   <div class="container">
     <SectionHead
       no="07"
@@ -90,31 +89,9 @@ import { lineUrl } from '../data/content';
 </script>
 
 <style>
-  /* 問い合わせはヒーローと同じメッシュのバンドに白パネルを浮かせる */
+  /* 問い合わせは淡いブルーグレーのバンドに白パネルを置く */
   #contact {
-    position: relative;
-    overflow: hidden;
-    padding-block-end: calc(var(--section-pad) + 48px);
-  }
-  #contact .container {
-    position: relative;
-    z-index: 2;
-  }
-  #contact :global(.section-label) {
-    color: #fff;
-  }
-  #contact :global(.section-label .no) {
-    color: #fff;
-  }
-  #contact :global(.section-label::before) {
-    background: rgba(255, 255, 255, 0.85);
-  }
-  #contact :global(.section-head h2) {
-    color: #fff;
-    text-shadow: 0 2px 24px rgba(38, 18, 120, 0.25);
-  }
-  #contact :global(.lead) {
-    color: rgba(255, 255, 255, 0.92);
+    background: var(--paper-alt);
   }
   .inq {
     max-width: 640px;
@@ -171,7 +148,7 @@ import { lineUrl } from '../data/content';
   .inq textarea:focus {
     outline: none;
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(83, 58, 253, 0.22);
+    box-shadow: 0 0 0 3px rgba(26, 158, 84, 0.22);
   }
   .inq .consent {
     display: flex;
@@ -210,9 +187,9 @@ import { lineUrl } from '../data/content';
   }
   .msg.ok {
     display: block;
-    background: #e9f4ec;
-    border: 1px solid #7fb894;
-    color: #175c33;
+    background: #eaf7ef;
+    border: 1px solid #8fd0a8;
+    color: #146c3c;
   }
   .msg.err {
     display: block;

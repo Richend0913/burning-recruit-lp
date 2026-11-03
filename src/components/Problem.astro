@@ -2,15 +2,36 @@
 import SectionHead from './SectionHead.astro';
 import Phrases from './Phrases.astro';
 import { problems, compareRows } from '../data/content';
+
+/* 課題カードのアイコン（カンプ2の緑チップ）。problems の並び順に対応 */
+const icons = [
+  // 応募がそもそも来ない: 虫眼鏡
+  '<circle cx="11" cy="11" r="7" /><path d="M20.5 20.5L16.7 16.7" />',
+  // 電話に出られない時間に応募を逃す: 受話器
+  '<path d="M21 16.9v2.6a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1.1 3.7 2 2 0 0 1 3.1 1.5h2.6a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L6.7 12.9a16 16 0 0 0 6 6l1.25-1.25a2 2 0 0 1 2.1-.45c.9.34 1.85.57 2.8.7A2 2 0 0 1 21 16.9z" />',
+  // 応募の管理が媒体ごとにバラバラ: グリッド
+  '<rect x="3" y="3" width="7" height="7" rx="1.5" /><rect x="14" y="3" width="7" height="7" rx="1.5" /><rect x="3" y="14" width="7" height="7" rx="1.5" /><rect x="14" y="14" width="7" height="7" rx="1.5" />',
+];
 ---
 
 <section class="section" id="problem">
   <div class="container">
     <SectionHead no="01" label="課題" title="採用の困りごとは、だいたいこの3つです。" />
-    <div class="rows rows--3col">
+    <div class="rows rows--3col rows--icons">
       {
-        problems.map((item) => (
+        problems.map((item, i) => (
           <div class="row-item">
+            <span class="p-icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                set:html={icons[i]}
+              />
+            </span>
             <h3>
               <Phrases text={item.title} />
             </h3>
@@ -48,6 +69,32 @@ import { problems, compareRows } from '../data/content';
 </section>
 
 <style>
+  /* 課題カード: 上端に緑のアイコンチップを重ねる（カンプ2） */
+  .rows.rows--icons {
+    margin-block-start: 32px;
+    gap: 40px 20px;
+  }
+  .rows--icons .row-item {
+    position: relative;
+    padding-block-start: 38px;
+  }
+  .p-icon {
+    position: absolute;
+    top: -23px;
+    left: 26px;
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 10px 20px rgba(26, 158, 84, 0.32);
+  }
+  .p-icon svg {
+    width: 24px;
+    height: 24px;
+  }
   .after {
     margin-block-start: 48px;
   }
@@ -106,7 +153,7 @@ import { problems, compareRows } from '../data/content';
   }
   .cmp tr.us th,
   .cmp tr.us .cmp-price {
-    color: var(--accent);
+    color: var(--accent-dark);
   }
   @media (max-width: 640px) {
     .cmp tr {

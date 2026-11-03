@@ -2,27 +2,66 @@
 import Phrases from './Phrases.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
+/* ヒーローの信頼チェック行。いずれも LP 既存コピーの事実のみで構成する */
+const checks = [
+  'お試し3ヶ月は月額無料（費用は継続時のみ）',
+  'お試し期間中も MIMORIA JOBS への求人掲載が無料',
+  'いつでも解約可',
+  '応募データは御社のもの',
+];
 ---
 
 <section class="hero" id="top">
-  <div class="mesh mesh--deep" aria-hidden="true"></div>
   <div class="container">
-    <p class="hero-eyebrow">運送・建設・現場系の中小企業へ</p>
-    <h1 class="hero-title">
-      <Phrases text="運送・建設の採用を、" /><span class="hl"
-        ><Phrases text="採用ページ＋24時間応募受付" /></span
-      ><Phrases text="で仕組み化する。" />
-    </h1>
-    <p class="hero-sub">
-      <Phrases
-        text="応募が来ない、電話に出られない時間に応募を逃す、応募の管理がバラバラ——その困りごとを、採用ページの制作と24時間の応募受付の仕組みで受け止めます。制作も運用も当社が代行。応募数は保証しない、誠実な設計です。"
-      />
-    </p>
-    <div class="hero-btns">
-      <a class="btn btn--white btn--arrow" href="#contact">無料お試しを相談する</a>
-      <a class="tlink tlink--light" href="#price">料金を見る</a>
+    <div class="hero-grid">
+      <div class="hero-main">
+        <p class="hero-eyebrow">運送・建設・現場系の中小企業へ</p>
+        <h1 class="hero-title">
+          <Phrases text="運送・建設の採用を、" /><span class="hl"
+            ><Phrases text="採用ページ＋" /><Phrases text="24時間応募受付" /></span
+          ><Phrases text="で仕組み化する。" />
+        </h1>
+        <p class="hero-sub">
+          <Phrases
+            text="応募が来ない、電話に出られない時間に応募を逃す、応募の管理がバラバラ——その困りごとを、採用ページの制作と24時間の応募受付の仕組みで受け止めます。制作も運用も当社が代行。応募数は保証しない、誠実な設計です。"
+          />
+        </p>
+        <div class="hero-btns">
+          <a class="btn btn--primary btn--arrow" href="#contact">無料お試しを相談する</a>
+          <a class="btn btn--ghost" href="#price">料金を見る</a>
+        </div>
+        <ul class="hero-checks">
+          {
+            checks.map((c) => (
+              <li>
+                <svg viewBox="0 0 20 20" aria-hidden="true">
+                  <circle cx="10" cy="10" r="10" fill="#1a9e54" />
+                  <path
+                    d="M6 10.4l2.6 2.6L14 7.4"
+                    fill="none"
+                    stroke="#fff"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <span>{c}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <figure class="hero-photo">
+        <img
+          src={`${base}photo-warehouse.webp`}
+          alt="配送センターで、コンベア上の段ボールを仕分けるスタッフと、荷受け口に停まる軽バン"
+          width="1920"
+          height="1280"
+          decoding="async"
+        />
+      </figure>
     </div>
-    <p class="hero-note">お試し3ヶ月は月額無料（費用は継続時のみ）／ いつでも解約可 ／ 応募データは御社のもの</p>
     <a class="proof" href="#demo" aria-label="制作デモの実物を見る">
       <span class="proof-bar" aria-hidden="true"><i></i><i></i><i></i></span>
       <span class="proof-media">
@@ -43,24 +82,29 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     position: relative;
     overflow: hidden;
     padding-block: 56px 0;
+    /* ヒーローは淡いブルーグレーのバンド。下端で白へ柔らかく溶かす */
+    background: linear-gradient(180deg, var(--paper-alt) 0%, var(--paper-alt) 72%, #fff 100%);
   }
   .hero .container {
     position: relative;
     z-index: 2;
   }
+  .hero-grid {
+    display: grid;
+    gap: 40px;
+  }
   .hero-eyebrow {
     display: inline-flex;
     align-items: center;
     padding: 7px 16px;
-    border: 1px solid rgba(255, 255, 255, 0.45);
+    border: 1px solid var(--line);
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.14);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    background: #fff;
+    box-shadow: var(--shadow-sm);
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.08em;
-    color: #fff;
+    color: var(--accent-dark);
     margin-block-end: 26px;
   }
   .hero-title {
@@ -68,19 +112,17 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     font-weight: 900;
     line-height: 1.3;
     letter-spacing: -0.02em;
-    color: #fff;
-    text-shadow: 0 2px 28px rgba(38, 18, 120, 0.28);
+    color: var(--ink);
   }
   .hero-title .hl {
-    color: #fff;
     text-decoration: underline;
-    text-decoration-color: var(--mesh-orange);
+    text-decoration-color: var(--accent);
     text-decoration-thickness: 0.09em;
     text-underline-offset: 0.14em;
   }
   .hero-sub {
     margin-block-start: 28px;
-    color: rgba(255, 255, 255, 0.94);
+    color: var(--ink-2);
     font-weight: 500;
     font-size: var(--fs-lead);
     line-height: 1.9;
@@ -88,17 +130,46 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
   }
   .hero-btns {
     display: flex;
-    gap: 18px 28px;
+    gap: 14px 16px;
     flex-wrap: wrap;
     align-items: center;
     margin-block-start: 36px;
   }
-  .hero-note {
-    margin-block-start: 22px;
-    font-size: 13px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.95);
-    text-shadow: 0 1px 12px rgba(38, 18, 120, 0.35);
+  /* 信頼チェック行（カンプ2の緑チェック列） */
+  .hero-checks {
+    list-style: none;
+    display: grid;
+    gap: 10px 28px;
+    margin-block-start: 30px;
+  }
+  .hero-checks li {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    font-size: 13.5px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  .hero-checks svg {
+    width: 19px;
+    height: 19px;
+    flex: none;
+    margin-block-start: 2px;
+  }
+  /* 右の写真パネル（大きな角丸＋柔らかい影） */
+  .hero-photo {
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    aspect-ratio: 16 / 10;
+  }
+  .hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 26%;
   }
   /* 制作デモの実物パネル: ヒーロー下端から次のセクションへ食い込ませる */
   .proof {
@@ -116,8 +187,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
   }
   .proof:hover {
     box-shadow:
-      0 36px 68px -12px rgba(50, 50, 93, 0.32),
-      0 20px 40px -18px rgba(0, 0, 0, 0.26);
+      0 30px 56px -12px rgba(18, 40, 60, 0.26),
+      0 16px 32px -14px rgba(18, 40, 60, 0.18);
   }
   .proof-bar {
     display: flex;
@@ -146,11 +217,25 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     .hero {
       padding-block-start: 84px;
     }
+    .hero-grid {
+      grid-template-columns: 1.04fr 0.96fr;
+      align-items: center;
+      gap: 52px;
+    }
     .hero-title {
       line-height: 1.24;
     }
+    .hero-checks {
+      grid-template-columns: 1fr 1fr;
+    }
+    .hero-photo {
+      aspect-ratio: 4 / 3;
+    }
+    .hero-photo img {
+      object-position: 50% 30%;
+    }
     .proof {
-      margin-block-start: 56px;
+      margin-block-start: 64px;
       margin-block-end: -80px;
     }
     .proof-media {

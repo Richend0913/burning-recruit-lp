@@ -1,34 +1,29 @@
 /*
  * MIMORIA RECRUIT LP — デザインシステム
- * Direction A（2026-11-03 オーナー選定 / demo-recruit と共通）: Stripe 系の現代的 SaaS 言語。
- * - 署名は多色グラデーションメッシュ（紫/インディゴ/ピンク/オレンジ）。
- *   ヒーローと問い合わせバンドにだけ反響させる
- * - ページ地は白 + Stripe のライトバンド #f6f9fc。墨は #0a2540
- * - パネルは radius 18px + 二重の柔らかいレイヤーシャドウ（Stripe 実値系）
+ * Design Comp 2（2026-11-03 オーナー選定）: 日本の優良 B2B 系の設計言語。
+ * - 地は白、セクションは淡いブルーグレー（#edf2f6 系）のトーンバンドで分ける
+ * - アクセントはフレッシュグリーン 1 色（#1a9e54 系）: CTA・チェック・強調にだけ使う
+ * - 文字は濃紺インク（#12283c 系）。パネルは白＋柔らかい影、角丸は大きめ
+ * - ボタンはフルピル（主 = グリーン塗り / 副 = アウトライン）
  * - 数字は Inter の tabular。タイポグラフィは離散ステップ（clamp 不使用）
  * - 余白は 4px 倍数、コンテナ 1120px。本文行間 1.75
  * - モーションは機能的なものだけ（≤300ms / ease-out / transform・opacity のみ）
  */
 
 :root {
-  --ink: #0a2540;
-  --ink-2: #425466;
-  --ink-3: #8898aa;
-  --ink-deep: #0a2540;
-  --line: #e6ebf1;
-  --line-soft: #eef2f7;
+  --ink: #12283c;
+  --ink-2: #43586e;
+  --ink-3: #7d92a6;
+  --ink-deep: #12283c;
+  --line: #d9e3ec;
+  --line-soft: #e7eef4;
   --paper: #ffffff;
-  --paper-alt: #f6f9fc;
-  --accent: #533afd;
-  --accent-dark: #4430d6;
+  --paper-alt: #edf2f6;
+  --accent: #1a9e54;
+  --accent-dark: #147c41;
   --accent-ink: #ffffff;
-  --accent-2: #ff4d8d;
-  --accent-tint: #f6f4ff;
-  /* メッシュの色面（ヒーロー署名） */
-  --mesh-purple: #a960ee;
-  --mesh-indigo: #533afd;
-  --mesh-pink: #ff4d8d;
-  --mesh-orange: #ff8c42;
+  --accent-2: #d64541;
+  --accent-tint: #e8f6ee;
 
   --font: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans',
     'BIZ UDPGothic', 'Yu Gothic UI', Meiryo, sans-serif;
@@ -48,14 +43,14 @@
 
   --section-pad: 72px;
   --radius: 12px;
-  /* Stripe 系のレイヤーシャドウ */
+  /* 柔らかいレイヤーシャドウ（紺グレー系） */
   --shadow-lg:
-    0 30px 60px -12px rgba(50, 50, 93, 0.25),
-    0 18px 36px -18px rgba(0, 0, 0, 0.22);
+    0 24px 48px -12px rgba(18, 40, 60, 0.18),
+    0 12px 28px -12px rgba(18, 40, 60, 0.12);
   --shadow-md:
-    0 15px 35px rgba(50, 50, 93, 0.1),
-    0 5px 15px rgba(0, 0, 0, 0.07);
-  --shadow-sm: 0 8px 24px rgba(50, 50, 93, 0.06);
+    0 12px 28px rgba(18, 40, 60, 0.08),
+    0 4px 12px rgba(18, 40, 60, 0.06);
+  --shadow-sm: 0 6px 18px rgba(18, 40, 60, 0.05);
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
@@ -123,7 +118,7 @@ a {
   color: inherit;
 }
 ::selection {
-  background: #d6ceff;
+  background: #bfe6cd;
 }
 
 /* ---------- レイアウト ---------- */
@@ -152,52 +147,6 @@ footer[id] {
   scroll-margin-top: 76px;
 }
 
-/* 署名メッシュ（ヒーロー/問い合わせバンド共用）。
-   多色の radial を重ね、下端はページ地へ溶かす */
-.mesh {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-.mesh::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(600px 420px at 12% -6%, rgba(169, 96, 238, 0.85), rgba(169, 96, 238, 0) 62%),
-    radial-gradient(700px 480px at 46% -12%, rgba(83, 58, 253, 0.8), rgba(83, 58, 253, 0) 65%),
-    radial-gradient(640px 460px at 78% -4%, rgba(255, 77, 141, 0.7), rgba(255, 77, 141, 0) 62%),
-    radial-gradient(560px 420px at 102% 6%, rgba(255, 140, 66, 0.75), rgba(255, 140, 66, 0) 60%),
-    linear-gradient(180deg, #6d4bd8 0%, #533afd 34%, rgba(246, 249, 252, 0) 92%);
-}
-.mesh::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 52%, #fff 98%);
-}
-/* バンド用: 下端はライトバンド地へ溶かす */
-.mesh--to-alt::after {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 40%, var(--paper-alt) 97%);
-}
-/* ヒーロー用: テキストブロックが長いので、溶け始めを遅らせる */
-.mesh--deep::after {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 68%, #fff 99%);
-}
-/* パネルを持たないヒーロー用: 地色を下端まで保ち、最後の余白だけで溶かす */
-.mesh--solid::before {
-  background:
-    radial-gradient(600px 420px at 12% -6%, rgba(169, 96, 238, 0.85), rgba(169, 96, 238, 0) 62%),
-    radial-gradient(700px 480px at 46% -12%, rgba(83, 58, 253, 0.8), rgba(83, 58, 253, 0) 65%),
-    radial-gradient(640px 460px at 78% -4%, rgba(255, 77, 141, 0.7), rgba(255, 77, 141, 0) 62%),
-    radial-gradient(560px 420px at 102% 6%, rgba(255, 140, 66, 0.75), rgba(255, 140, 66, 0) 60%),
-    linear-gradient(180deg, #6d4bd8 0%, #533afd 55%, #533afd 100%);
-}
-.mesh--solid::after {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 82%, #fff 99%);
-}
-
 /* ---------- 見出し ---------- */
 
 h1,
@@ -224,7 +173,7 @@ h3 {
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.16em;
-  color: var(--accent);
+  color: var(--accent-dark);
   margin-block-end: 16px;
 }
 .section-label::before {
@@ -232,7 +181,7 @@ h3 {
   width: 22px;
   height: 3px;
   border-radius: 2px;
-  background: linear-gradient(90deg, var(--mesh-purple), var(--accent));
+  background: linear-gradient(90deg, #57c785, var(--accent));
   flex: none;
 }
 .section-label .no {
@@ -241,7 +190,7 @@ h3 {
   font-size: 12.5px;
   font-weight: 700;
   letter-spacing: 0.06em;
-  color: var(--accent);
+  color: var(--accent-dark);
 }
 .section-head h2 {
   font-size: var(--fs-h2);
@@ -281,27 +230,29 @@ h3 {
 .btn--primary {
   background: var(--accent);
   color: var(--accent-ink);
-  box-shadow: 0 10px 24px rgba(83, 58, 253, 0.35);
+  box-shadow: 0 10px 22px rgba(26, 158, 84, 0.32);
 }
 .btn--primary:hover {
   background: var(--accent-dark);
-  box-shadow: 0 14px 30px rgba(83, 58, 253, 0.4);
+  box-shadow: 0 14px 28px rgba(26, 158, 84, 0.38);
 }
 .btn--white {
   background: #fff;
-  color: var(--accent);
-  box-shadow: 0 14px 30px rgba(38, 18, 120, 0.3);
-}
-.btn--white:hover {
-  box-shadow: 0 18px 38px rgba(38, 18, 120, 0.36);
-}
-.btn--ghost {
-  background: transparent;
   color: var(--ink);
   border-color: var(--line);
+  box-shadow: var(--shadow-sm);
+}
+.btn--white:hover {
+  border-color: var(--ink-3);
+}
+.btn--ghost {
+  background: #fff;
+  color: var(--ink);
+  border-color: #b9c9d6;
 }
 .btn--ghost:hover {
-  border-color: var(--ink-3);
+  border-color: var(--accent);
+  color: var(--accent-dark);
 }
 /* 矢印付きボタン: グリフが少しだけ進む */
 .btn--arrow::after {
@@ -323,7 +274,7 @@ h3 {
   letter-spacing: 0.03em;
   color: var(--ink);
   text-decoration: underline;
-  text-decoration-color: #cfc6ff;
+  text-decoration-color: #a9dcc0;
   text-decoration-thickness: 2px;
   text-underline-offset: 6px;
   transition: text-decoration-color 180ms var(--ease-out);
@@ -340,17 +291,6 @@ h3 {
 }
 .tlink:hover::after {
   transform: translateX(3px);
-}
-/* メッシュ上の副導線（白） */
-.tlink--light {
-  color: #fff;
-  text-decoration-color: rgba(255, 255, 255, 0.55);
-}
-.tlink--light::after {
-  color: #fff;
-}
-.tlink--light:hover {
-  text-decoration-color: #fff;
 }
 
 /* ---------- MIMORIA RECRUIT 固有の共通部品 ---------- */
@@ -371,7 +311,7 @@ h3 {
   color: var(--ink);
 }
 .notice a {
-  color: var(--accent);
+  color: var(--accent-dark);
   font-weight: 700;
   text-underline-offset: 3px;
   white-space: nowrap;
@@ -379,12 +319,12 @@ h3 {
 
 /* テキスト中のアクセントリンク */
 .a-link {
-  color: var(--accent);
+  color: var(--accent-dark);
   font-weight: 700;
   text-underline-offset: 3px;
 }
 
-/* 番号つきパネルリスト（旧・編集型リストの置き換え） */
+/* 番号チップつきパネルリスト */
 .rows {
   display: grid;
   gap: 16px;
@@ -398,14 +338,18 @@ h3 {
   padding: 24px 26px;
 }
 .row-item .num {
-  display: block;
+  display: inline-flex;
+  align-items: center;
   font-family: var(--font-num);
   font-feature-settings: 'tnum' 1;
-  color: var(--accent);
-  font-size: 14px;
+  color: var(--accent-dark);
+  background: var(--accent-tint);
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  margin-block-end: 10px;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-block-end: 12px;
 }
 .row-item h3 {
   font-size: var(--fs-h3);
@@ -460,7 +404,7 @@ h3 {
   font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.02em;
-  box-shadow: 0 8px 18px rgba(83, 58, 253, 0.32);
+  box-shadow: 0 8px 18px rgba(26, 158, 84, 0.3);
 }
 .step-item h3 {
   font-size: var(--fs-h3);
@@ -481,7 +425,7 @@ h3 {
   }
 }
 
-/* 実物・事例へのリンクパネル（旧リンク行の置き換え） */
+/* 実物・事例へのリンクパネル */
 .link-rows {
   display: grid;
   gap: 16px;
@@ -526,7 +470,7 @@ h3 {
   font-weight: 700;
   font-size: 14.5px;
   letter-spacing: 0.03em;
-  color: var(--accent);
+  color: var(--accent-dark);
   white-space: nowrap;
 }
 .link-row:hover .lr-title {

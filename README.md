@@ -8,7 +8,7 @@
 
 ## 技術構成
 
-- **Astro 5 + TypeScript**（静的出力）。ソースは `src/`（layouts / components / data / scripts / styles）に分割。デザインシステムは採用LPデモ（demo-recruit）と共通の編集型レイアウト（白地・墨文字・罫線）。
+- **Astro 5 + TypeScript**（静的出力）。ソースは `src/`（layouts / components / data / scripts / styles）に分割。デザインはデザインカンプ2（日本の優良B2B系：白基調＋淡いブルーグレーのバンド＋グリーンのアクセント）に準拠。
 - 掲載内容（価格・お試し条件・FAQ など）は `src/data/content.ts` を正とする。
 - 日本語の改行制御: BudouX（`budoux`）で見出し・リード・本文を文節分割し、文節の途中では折り返さない。
 - お問い合わせフォームは formsubmit.co 経由で mimoria.inc@gmail.com へ送信（`src/scripts/inquiry.ts`）。

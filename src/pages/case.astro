@@ -30,7 +30,6 @@ const footerLinks = [
   footerLinks={footerLinks}
 >
   <section class="hero" id="top">
-    <div class="mesh mesh--solid" aria-hidden="true"></div>
     <div class="container">
       <p class="hero-eyebrow">導入事例 No.1</p>
       <h1 class="hero-title">
@@ -133,7 +132,6 @@ const footerLinks = [
   </section>
 
   <section class="section cta-sec">
-    <div class="mesh mesh--deep" aria-hidden="true"></div>
     <div class="container">
       <SectionHead label="お問い合わせ" title="同じ仕組みを、御社の採用にも。" />
       <p class="lead cta-lead">
@@ -142,7 +140,7 @@ const footerLinks = [
         />
       </p>
       <div class="cta-btns">
-        <a class="btn btn--white btn--arrow" href="index.html#contact">相談する</a>
+        <a class="btn btn--primary btn--arrow" href="index.html#contact">相談する</a>
         <a class="btn btn--ghost" href="index.html#price">料金を見る</a>
       </div>
     </div>
@@ -154,6 +152,8 @@ const footerLinks = [
     position: relative;
     overflow: hidden;
     padding-block: 56px 96px;
+    /* ヒーローは淡いブルーグレーのバンド（トップページと共通） */
+    background: linear-gradient(180deg, var(--paper-alt) 0%, var(--paper-alt) 70%, #fff 100%);
   }
   .hero .container {
     position: relative;
@@ -163,15 +163,14 @@ const footerLinks = [
     display: inline-flex;
     align-items: center;
     padding: 7px 16px;
-    border: 1px solid rgba(255, 255, 255, 0.45);
+    border: 1px solid var(--line);
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.14);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    background: #fff;
+    box-shadow: var(--shadow-sm);
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.08em;
-    color: #fff;
+    color: var(--accent-dark);
     margin-block-end: 26px;
   }
   .hero-title {
@@ -179,19 +178,17 @@ const footerLinks = [
     font-weight: 900;
     line-height: 1.3;
     letter-spacing: -0.02em;
-    color: #fff;
-    text-shadow: 0 2px 28px rgba(38, 18, 120, 0.28);
+    color: var(--ink);
   }
   .hero-title .hl {
-    color: #fff;
     text-decoration: underline;
-    text-decoration-color: var(--mesh-orange);
+    text-decoration-color: var(--accent);
     text-decoration-thickness: 0.09em;
     text-underline-offset: 0.14em;
   }
   .hero-sub {
     margin-block-start: 28px;
-    color: rgba(255, 255, 255, 0.94);
+    color: var(--ink-2);
     font-weight: 500;
     font-size: var(--fs-lead);
     line-height: 1.9;
@@ -217,35 +214,15 @@ const footerLinks = [
   .honest {
     margin-block-start: 40px;
   }
-  /* 締めの CTA はメッシュのバンドに置く */
+  /* 締めの CTA は淡いブルーグレーのバンドに置く */
   .cta-sec {
-    position: relative;
-    overflow: hidden;
-    padding-block-end: calc(var(--section-pad) + 48px);
-  }
-  .cta-sec .container {
-    position: relative;
-    z-index: 2;
-  }
-  .cta-sec :global(.section-label) {
-    color: #fff;
-  }
-  .cta-sec :global(.section-label .no) {
-    color: #fff;
-  }
-  .cta-sec :global(.section-label::before) {
-    background: rgba(255, 255, 255, 0.85);
+    background: var(--paper-alt);
   }
   .cta-sec :global(.section-head) {
     margin-block-end: 0;
   }
-  .cta-sec :global(.section-head h2) {
-    color: #fff;
-    text-shadow: 0 2px 24px rgba(38, 18, 120, 0.25);
-  }
   .cta-sec .cta-lead {
     margin-block-start: 16px;
-    color: rgba(255, 255, 255, 0.92);
   }
   .cta-btns {
     display: flex;
@@ -253,13 +230,5 @@ const footerLinks = [
     flex-wrap: wrap;
     align-items: center;
     margin-block-start: 32px;
-  }
-  .cta-sec .btn--ghost {
-    color: #fff;
-    border-color: rgba(255, 255, 255, 0.7);
-    background: rgba(38, 18, 120, 0.18);
-  }
-  .cta-sec .btn--ghost:hover {
-    border-color: #fff;
   }
 </style>
