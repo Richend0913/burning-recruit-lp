@@ -2,6 +2,7 @@
  * お問い合わせフォーム送信（formsubmit.co 経由で info@mimoria.jp へ）。
  * 初回送信時に formsubmit から有効化（activation）メールがその受信箱に届くので、
  * 運営側で一度だけリンクをクリックして有効化すること。
+ * 送信者への自動返信（_autoresponse）も、この一度きりの有効化が完了してから機能する。
  */
 
 declare global {
@@ -43,6 +44,9 @@ if (form) {
     const data = {
       _subject: 'MIMORIA RECRUIT 相談（LPフォーム）',
       _template: 'table',
+      _replyto: val('f-email').trim(),
+      _autoresponse:
+        'MIMORIA RECRUIT へのご相談ありがとうございます。株式会社MIMORIA です。\n\nご相談フォームの送信を受け付けました。\n内容を確認のうえ、1営業日以内に担当よりご連絡いたします。\n次回のご連絡では、ヒアリング（60分程度）の日程候補をお伺いします。\n\nなお、MIMORIA RECRUIT は3ヶ月のお試し期間（月額無料、初期費用はお試し後に継続される場合のみ）をご用意しています。詳しくはヒアリング時にご案内します。\n\nお急ぎの場合は info@mimoria.jp へ直接ご連絡ください。\n※このメールは自動送信です。',
       会社名: val('f-company').trim(),
       担当者名: val('f-name').trim(),
       メールアドレス: val('f-email').trim(),
