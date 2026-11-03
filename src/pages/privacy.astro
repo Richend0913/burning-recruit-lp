@@ -67,6 +67,10 @@ const footerLinks = [
 </BaseLayout>
 
 <style>
+  /* 文書ページは本文が左揃えの単一カラムなので、見出しも左揃えのまま */
+  .policy :global(.section-head) {
+    text-align: left;
+  }
   .policy p {
     color: var(--ink-2);
     font-size: 15px;

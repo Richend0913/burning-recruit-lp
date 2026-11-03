@@ -21,7 +21,7 @@ import { plans, jobsUrl } from '../data/content';
       }
     </div>
 
-    <div class="block">
+    <div class="block center-block">
       <h3><Phrases text="まずは3ヶ月のお試し期間から" /></h3>
       <p>
         <Phrases
@@ -36,7 +36,7 @@ import { plans, jobsUrl } from '../data/content';
       </p>
     </div>
 
-    <div class="block">
+    <div class="block center-block">
       <h3><Phrases text="ご契約特典" /></h3>
       <p>
         <Phrases text="ご契約中はもちろん、お試し期間中も、求人サイト " /><a
@@ -50,7 +50,7 @@ import { plans, jobsUrl } from '../data/content';
       </p>
     </div>
 
-    <div class="notice honest">
+    <div class="notice honest center-block">
       <p>
         <strong>正直にお伝えします。</strong>
         <strong>応募数は保証しません。</strong
@@ -64,38 +64,44 @@ import { plans, jobsUrl } from '../data/content';
 </section>
 
 <style>
+  /* 実測: プランは中央揃えの白パネル、角丸 ≈ 幅の 2.7%、価格/プラン名 ≈ 1.8、
+     推奨は 2px 緑枠＋上辺中央にまたがる「おすすめ」ピル、説明は全幅の淡色ストリップ */
   .plans {
     display: grid;
-    gap: 20px;
+    gap: 24px;
     margin-block-start: 16px;
   }
   .plan {
     position: relative;
     display: grid;
-    gap: 6px;
+    gap: 4px;
+    text-align: center;
     background: var(--paper);
     border: 1px solid var(--line);
-    border-radius: 18px;
-    box-shadow: var(--shadow-md);
-    padding: 28px;
+    border-radius: var(--radius-plan);
+    box-shadow: var(--shadow-sm);
+    padding: 26px 24px 0;
+    overflow: hidden;
   }
   .plan--rec {
     border: 2px solid var(--accent);
+    padding: 25px 23px 0;
+    overflow: visible;
   }
-  /* 推奨プランのタグ（カンプ2の「おすすめ」ピル） */
   .plan-tag {
     position: absolute;
-    top: -15px;
-    left: 28px;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
     background: var(--accent);
     color: #fff;
     font-size: 12.5px;
     font-weight: 700;
     letter-spacing: 0.1em;
     line-height: 1;
-    padding: 8px 18px;
+    padding: 6px 16px;
     border-radius: 999px;
-    box-shadow: 0 8px 16px rgba(26, 158, 84, 0.35);
+    white-space: nowrap;
   }
   .plan-name {
     font-weight: 800;
@@ -106,7 +112,7 @@ import { plans, jobsUrl } from '../data/content';
     font-family: var(--font-num);
     white-space: nowrap;
     font-weight: 800;
-    font-size: 32px;
+    font-size: 30px;
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.01em;
     line-height: 1.35;
@@ -114,20 +120,37 @@ import { plans, jobsUrl } from '../data/content';
   .plan-note {
     color: var(--ink-2);
     font-size: 13.5px;
-    line-height: 1.8;
+    line-height: 1.7;
+    background: var(--paper-strip);
+    margin: 14px -24px 0;
+    padding: 12px 20px;
+  }
+  .plan--rec .plan-note {
+    margin-inline: -23px;
+    border-radius: 0 0 8px 8px;
   }
   @media (min-width: 860px) {
     .plans {
       grid-template-columns: 1fr 1fr;
     }
     .plan {
-      padding: 32px;
+      padding: 30px 32px 0;
+    }
+    .plan--rec {
+      padding: 29px 31px 0;
+    }
+    .plan-name {
+      font-size: 18px;
     }
     .plan-price {
-      font-size: 36px;
+      font-size: 32px;
     }
     .plan-note {
       font-size: 14px;
+      margin-inline: -32px;
+    }
+    .plan--rec .plan-note {
+      margin-inline: -31px;
     }
   }
 
@@ -136,7 +159,7 @@ import { plans, jobsUrl } from '../data/content';
     max-width: 52rem;
     background: var(--paper);
     border: 1px solid var(--line);
-    border-radius: 16px;
+    border-radius: var(--radius);
     box-shadow: var(--shadow-sm);
     padding: 26px 28px;
   }

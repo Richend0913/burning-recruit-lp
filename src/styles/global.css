@@ -1,9 +1,10 @@
 /*
  * MIMORIA RECRUIT LP — デザインシステム
  * Design Comp 2（2026-11-03 オーナー選定）: 日本の優良 B2B 系の設計言語。
- * - 地は白、セクションは淡いブルーグレー（#edf2f6 系）のトーンバンドで分ける
- * - アクセントはフレッシュグリーン 1 色（#1a9e54 系）: CTA・チェック・強調にだけ使う
- * - 文字は濃紺インク（#12283c 系）。パネルは白＋柔らかい影、角丸は大きめ
+ * - 地は白、セクションは淡いブルーグレー（実測 #e1e9f2）のトーンバンドと白を交互に。フッターは一段濃い #d8e4f0
+ * - アクセントはフレッシュグリーン 1 色（実測 #289c57）: CTA・チェック・強調にだけ使う
+ * - 文字は濃紺インク（実測 #111b2e）。パネルは白＋細枠＋ごく淡い影、角丸は控えめ（8–12px）
+ * - 2026-11-03 実測フィデリティパス: 値の根拠は各トークンのコメント参照
  * - ボタンはフルピル（主 = グリーン塗り / 副 = アウトライン）
  * - 数字は Inter の tabular。タイポグラフィは離散ステップ（clamp 不使用）
  * - 余白は 4px 倍数、コンテナ 1120px。本文行間 1.75
@@ -11,19 +12,24 @@
  */
 
 :root {
-  --ink: #12283c;
-  --ink-2: #43586e;
-  --ink-3: #7d92a6;
-  --ink-deep: #12283c;
-  --line: #d9e3ec;
-  --line-soft: #e7eef4;
+  /* 実測値（/tmp/fidelity/measured.md）: カンプの画素サンプリングから導出 */
+  --ink: #111b2e; /* 見出しストローク #01031d〜リード #171c2d の実測から */
+  --ink-2: #3a4657; /* カード本文の実測 #303034 を紺寄りに */
+  --ink-3: #6e7f93;
+  --ink-deep: #111b2e;
+  --line: #d5dbe3; /* カード枠 1px 実効色 ≈ #d3d8df */
+  --line-soft: #e6ebf0;
   --paper: #ffffff;
-  --paper-alt: #edf2f6;
-  --accent: #1a9e54;
-  --accent-dark: #147c41;
+  --paper-alt: #e1e9f2; /* ヒーローバンド実測 #e0e8f1 / #e1e9f2 */
+  --paper-deep: #d8e4f0; /* フッターバンド実測 */
+  --paper-strip: #f0f4f7; /* プラン説明ストリップ実測 */
+  --accent: #289c57; /* CTA #349f59 / ナビCTA #299b57 / 推奨ボタン #279d58 の中央値 */
+  --accent-dark: #1d7d45;
   --accent-ink: #ffffff;
   --accent-2: #d64541;
-  --accent-tint: #e8f6ee;
+  --accent-tint: #e6f3eb;
+  --accent-chip: #cde7d7; /* アイコンチップ実測 */
+  --outline: #8b98aa; /* 副ボタン枠の実測 */
 
   --font: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans',
     'BIZ UDPGothic', 'Yu Gothic UI', Meiryo, sans-serif;
@@ -32,41 +38,48 @@
   --w-wide: 1120px;
   --w-text: 42rem;
 
-  /* タイプスケール（離散ステップ。860px / 1120px で段階を上げる） */
+  /* タイプスケール（離散ステップ。860px / 1120px で段階を上げる）
+     実測比: 見出し/リード ≈ 2.15、セクション見出し ≈ 0.67 × ヒーロー見出し */
   --fs-display: 34px;
-  --fs-h2: 26px;
+  --fs-h2: 24px;
   --fs-h3: 17px;
   --fs-lead: 15.5px;
+  --fs-hero-lead: 16px;
   --fs-body: 16px;
   --fs-sm: 14px;
   --fs-xs: 12.5px;
 
-  --section-pad: 72px;
-  --radius: 12px;
-  /* 柔らかいレイヤーシャドウ（紺グレー系） */
+  --section-pad: 64px;
+  /* 角丸の実測: カード ≈ 幅の 2.2%、プラン ≈ 2.7%、写真 ≈ 2.0% */
+  --radius: 8px;
+  --radius-plan: 10px;
+  --radius-photo: 12px;
+  /* 影はカンプではほぼ見えない（下辺 4px 程度の淡い滲み） */
   --shadow-lg:
     0 24px 48px -12px rgba(18, 40, 60, 0.18),
     0 12px 28px -12px rgba(18, 40, 60, 0.12);
   --shadow-md:
-    0 12px 28px rgba(18, 40, 60, 0.08),
-    0 4px 12px rgba(18, 40, 60, 0.06);
-  --shadow-sm: 0 6px 18px rgba(18, 40, 60, 0.05);
+    0 8px 22px rgba(17, 27, 46, 0.06),
+    0 2px 6px rgba(17, 27, 46, 0.04);
+  --shadow-sm: 0 2px 6px rgba(17, 27, 46, 0.04);
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 @media (min-width: 860px) {
   :root {
-    --fs-display: 56px;
-    --fs-h2: 32px;
+    --fs-display: 40px;
+    --fs-h2: 28px;
     --fs-h3: 18px;
-    --fs-lead: 16.5px;
-    --section-pad: 104px;
+    --fs-lead: 17px;
+    --fs-hero-lead: 18px;
+    --section-pad: 88px;
   }
 }
 
 @media (min-width: 1120px) {
   :root {
-    --fs-display: 64px;
+    --fs-display: 44px;
+    --fs-hero-lead: 20px;
   }
 }
 
@@ -108,6 +121,13 @@ body {
     padding-block-end: 0;
   }
 }
+/* BudouX で包んでいない地の文（注記・表・会社情報など）も、対応ブラウザでは文節で折り返す。
+   DOM は変えない（CSS のみ）。非対応ブラウザは従来どおり word-break: normal */
+@supports (word-break: auto-phrase) {
+  body {
+    word-break: auto-phrase;
+  }
+}
 
 img {
   max-width: 100%;
@@ -137,6 +157,7 @@ a {
 .section {
   padding-block: var(--section-pad);
 }
+/* トーンバンド: カンプ同様、白とバンドを交互に。バンド境界は硬いエッジ */
 .section--alt {
   background: var(--paper-alt);
 }
@@ -159,11 +180,20 @@ h3 {
 }
 
 .section-head {
-  margin-block-end: 44px;
+  margin-block-end: 36px;
 }
+/* カンプはセクション見出し（タイトル＋サブ）を中央揃え。長文の多いモバイルは左揃えのまま */
 @media (min-width: 860px) {
   .section-head {
-    margin-block-end: 56px;
+    margin-block-end: 40px;
+    text-align: center;
+  }
+  .section-head .lead {
+    margin-inline: auto;
+  }
+  /* 中央見出しの下に置く単独ブロックは中央に寄せる（文字組みは左揃え） */
+  .center-block {
+    margin-inline: auto;
   }
 }
 .section-label {
@@ -198,7 +228,7 @@ h3 {
   letter-spacing: -0.015em;
 }
 .lead {
-  margin-block-start: 16px;
+  margin-block-start: 12px;
   color: var(--ink-2);
   font-size: var(--fs-lead);
   line-height: 1.85;
@@ -227,14 +257,15 @@ h3 {
     box-shadow 180ms var(--ease-out),
     transform 180ms var(--ease-out);
 }
+/* カンプの主ボタンはフラット（影なし）なので、影はごく薄く */
 .btn--primary {
   background: var(--accent);
   color: var(--accent-ink);
-  box-shadow: 0 10px 22px rgba(26, 158, 84, 0.32);
+  box-shadow: 0 2px 6px rgba(40, 156, 87, 0.18);
 }
 .btn--primary:hover {
   background: var(--accent-dark);
-  box-shadow: 0 14px 28px rgba(26, 158, 84, 0.38);
+  box-shadow: 0 4px 12px rgba(40, 156, 87, 0.24);
 }
 .btn--white {
   background: #fff;
@@ -245,10 +276,11 @@ h3 {
 .btn--white:hover {
   border-color: var(--ink-3);
 }
+/* 副ボタン: 地色が透ける塗りなし＋スレートの細枠（カンプ実測） */
 .btn--ghost {
-  background: #fff;
+  background: transparent;
   color: var(--ink);
-  border-color: #b9c9d6;
+  border: 1.5px solid var(--outline);
 }
 .btn--ghost:hover {
   border-color: var(--accent);
@@ -299,13 +331,13 @@ h3 {
 .notice {
   background: var(--paper);
   border: 1px solid var(--line);
-  border-radius: 16px;
-  box-shadow: var(--shadow-md);
+  border-radius: var(--radius);
   color: var(--ink-2);
   font-size: 14px;
   line-height: 1.9;
   padding: 24px 28px;
   max-width: 52rem;
+  box-shadow: var(--shadow-sm);
 }
 .notice strong {
   color: var(--ink);
@@ -333,7 +365,7 @@ h3 {
 .row-item {
   background: var(--paper);
   border: 1px solid var(--line);
-  border-radius: 16px;
+  border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
   padding: 24px 26px;
 }
@@ -363,13 +395,14 @@ h3 {
   max-width: var(--w-text);
 }
 @media (min-width: 860px) {
+  /* カード間隔の実測: コンテナの 1.15% ≈ 12–16px */
   .rows--2col {
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    gap: 16px;
   }
   .rows--3col {
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 16px;
   }
 }
 
@@ -386,7 +419,7 @@ h3 {
   align-items: start;
   background: var(--paper);
   border: 1px solid var(--line);
-  border-radius: 16px;
+  border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
   padding: 22px 24px;
 }
@@ -404,7 +437,6 @@ h3 {
   font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.02em;
-  box-shadow: 0 8px 18px rgba(26, 158, 84, 0.3);
 }
 .step-item h3 {
   font-size: var(--fs-h3);
@@ -421,7 +453,7 @@ h3 {
 @media (min-width: 860px) {
   .steps--2col {
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    gap: 16px;
   }
 }
 
@@ -439,7 +471,7 @@ h3 {
   gap: 10px 28px;
   background: var(--paper);
   border: 1px solid var(--line);
-  border-radius: 16px;
+  border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
   padding: 24px 26px;
   text-decoration: none;

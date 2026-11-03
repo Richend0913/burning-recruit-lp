@@ -7,7 +7,7 @@ import { faqItems } from '../data/content';
 <section class="section section--alt" id="faq">
   <div class="container">
     <SectionHead no="06" label="よくある質問" title="契約の前に、正直に答えます" />
-    <div class="faq-list">
+    <div class="faq-list center-block">
       {
         faqItems.map((item) => (
           <details>
@@ -33,7 +33,7 @@ import { faqItems } from '../data/content';
   details {
     background: var(--paper);
     border: 1px solid var(--line);
-    border-radius: 16px;
+    border-radius: var(--radius);
     box-shadow: var(--shadow-sm);
     padding: 20px 24px;
   }

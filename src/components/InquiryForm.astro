@@ -13,7 +13,7 @@ import { lineUrl } from '../data/content';
     />
     <!-- フォーム送信は formsubmit.co 経由で mimoria.inc@gmail.com へ届きます。
          初回送信時に formsubmit から有効化（activation）メールがその受信箱に届くので、運営側で一度だけリンクをクリックして有効化してください。 -->
-    <form class="inq" id="inquiry-form" novalidate>
+    <form class="inq center-block" id="inquiry-form" novalidate>
       <div class="fld">
         <label for="f-company">会社名<span class="req">必須</span></label>
         <input type="text" id="f-company" name="会社名" autocomplete="organization" required />
@@ -89,16 +89,13 @@ import { lineUrl } from '../data/content';
 </script>
 
 <style>
-  /* 問い合わせは淡いブルーグレーのバンドに白パネルを置く */
-  #contact {
-    background: var(--paper-alt);
-  }
+  /* 問い合わせは白地（バンドとの交互リズム）に枠つき白パネルを置く */
   .inq {
     max-width: 640px;
     background: var(--paper);
     border: 1px solid var(--line);
-    border-radius: 18px;
-    box-shadow: var(--shadow-lg);
+    border-radius: var(--radius-plan);
+    box-shadow: var(--shadow-md);
     padding: 28px 24px;
   }
   @media (min-width: 860px) {
@@ -129,8 +126,8 @@ import { lineUrl } from '../data/content';
   .inq textarea {
     width: 100%;
     background: var(--paper);
-    border: 1px solid #d7dee7;
-    border-radius: 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
     color: var(--ink);
     padding: 12px 14px;
     font: inherit;
@@ -148,7 +145,7 @@ import { lineUrl } from '../data/content';
   .inq textarea:focus {
     outline: none;
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(26, 158, 84, 0.22);
+    box-shadow: 0 0 0 3px rgba(40, 156, 87, 0.22);
   }
   .inq .consent {
     display: flex;

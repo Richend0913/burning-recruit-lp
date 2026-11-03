@@ -132,10 +132,11 @@ const {
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(255, 255, 255, 0.88);
+    background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-block-end: 1px solid var(--line);
+    /* カンプのヘッダー下端は線ではなく 2–3px の淡い陰り */
+    box-shadow: 0 1px 3px rgba(17, 27, 46, 0.07);
   }
   .hdr-in {
     display: flex;
@@ -143,6 +144,11 @@ const {
     justify-content: space-between;
     gap: 12px;
     min-height: 62px;
+  }
+  @media (min-width: 860px) {
+    .hdr-in {
+      min-height: 70px;
+    }
   }
   .brand {
     display: inline-flex;
@@ -167,7 +173,6 @@ const {
     font-family: var(--font-num);
     font-weight: 800;
     font-size: 15px;
-    box-shadow: 0 6px 16px rgba(26, 158, 84, 0.28);
     flex: none;
   }
   .brand span {
@@ -180,9 +185,8 @@ const {
     font-weight: 700;
     font-size: 14px;
     letter-spacing: 0.04em;
-    padding: 10px 22px;
+    padding: 10px 24px;
     border-radius: 999px;
-    box-shadow: 0 8px 20px rgba(26, 158, 84, 0.3);
     white-space: nowrap;
     flex-shrink: 0;
     transition: background-color 180ms var(--ease-out);
@@ -191,9 +195,9 @@ const {
     background: var(--accent-dark);
   }
 
+  /* フッターは一段濃いバンド（実測 #d8e4f0）。境界は硬いエッジ */
   .ft {
-    background: var(--paper-alt);
-    border-block-start: 1px solid var(--line);
+    background: var(--paper-deep);
     color: var(--ink-2);
     padding-block: 56px 64px;
     font-size: 12.5px;

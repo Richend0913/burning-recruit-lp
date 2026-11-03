@@ -112,15 +112,15 @@ const footerLinks = [
     </div>
   </section>
 
-  <section class="section" id="policy">
+  <section class="section section--alt" id="policy">
     <div class="container">
       <SectionHead label="運用方針" title="自社でも貫いている原則" />
-      <p class="body-txt">
+      <p class="body-txt center-block">
         この仕組みは「応募数を保証する」ものではありません。それはお客様へのご提案でも、自社の運用でも同じです。代わりに貫いているのは、<strong
           >条件を正直に開示すること</strong
         >です。単価・経費・手取りの考え方を盛らずに出すからこそ、条件を理解したうえでの応募が集まり、面談後のミスマッチや早期離職が減る——その考え方で、自社の採用ページも作っています。
       </p>
-      <div class="notice honest">
+      <div class="notice honest center-block">
         <p>
           <strong>数字について、正直にお伝えします。</strong
           >具体的な応募実績の数字は、まだここには載せていません。計測を統一したのが2026年11月のため、比較できる形のデータはこれから貯まっていく段階です。<strong
@@ -151,9 +151,9 @@ const footerLinks = [
   .hero {
     position: relative;
     overflow: hidden;
-    padding-block: 56px 96px;
-    /* ヒーローは淡いブルーグレーのバンド（トップページと共通） */
-    background: linear-gradient(180deg, var(--paper-alt) 0%, var(--paper-alt) 70%, #fff 100%);
+    padding-block: 48px 56px;
+    /* ヒーローは淡いブルーグレーのバンド（トップページと共通・硬いエッジ） */
+    background: var(--paper-alt);
   }
   .hero .container {
     position: relative;
@@ -166,7 +166,6 @@ const footerLinks = [
     border: 1px solid var(--line);
     border-radius: 999px;
     background: #fff;
-    box-shadow: var(--shadow-sm);
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.08em;
@@ -187,16 +186,16 @@ const footerLinks = [
     text-underline-offset: 0.14em;
   }
   .hero-sub {
-    margin-block-start: 28px;
-    color: var(--ink-2);
-    font-weight: 500;
-    font-size: var(--fs-lead);
-    line-height: 1.9;
+    margin-block-start: 20px;
+    color: #1f2a3c;
+    font-weight: 400;
+    font-size: var(--fs-hero-lead);
+    line-height: 1.75;
     max-width: 40em;
   }
   @media (min-width: 860px) {
     .hero {
-      padding-block: 84px 128px;
+      padding-block: 72px 80px;
     }
     .hero-title {
       line-height: 1.24;
@@ -214,10 +213,7 @@ const footerLinks = [
   .honest {
     margin-block-start: 40px;
   }
-  /* 締めの CTA は淡いブルーグレーのバンドに置く */
-  .cta-sec {
-    background: var(--paper-alt);
-  }
+  /* 締めの CTA は白地（運用方針のバンドと交互）。フッターの濃いバンドへつなぐ */
   .cta-sec :global(.section-head) {
     margin-block-end: 0;
   }
@@ -230,5 +226,14 @@ const footerLinks = [
     flex-wrap: wrap;
     align-items: center;
     margin-block-start: 32px;
+  }
+  @media (min-width: 860px) {
+    .cta-sec .cta-lead {
+      margin-inline: auto;
+      text-align: center;
+    }
+    .cta-btns {
+      justify-content: center;
+    }
   }
 </style>

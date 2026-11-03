@@ -78,12 +78,15 @@ const checks = [
 </section>
 
 <style>
+  /* 実測（/tmp/fidelity/measured.md）:
+     写真パネル = コンテナの 50% 幅・アスペクト 1.91:1・角丸 ≈ 幅の 2%・影なし
+     見出し/リード ≈ 2.15、見出し→リード 0.5em、バンドは硬いエッジ */
   .hero {
     position: relative;
     overflow: hidden;
-    padding-block: 56px 0;
-    /* ヒーローは淡いブルーグレーのバンド。下端で白へ柔らかく溶かす */
-    background: linear-gradient(180deg, var(--paper-alt) 0%, var(--paper-alt) 72%, #fff 100%);
+    padding-block: 40px 0;
+    /* ヒーローは淡いブルーグレーのバンド。実物パネルの途中で白へ切り替える（硬いエッジ） */
+    background: linear-gradient(180deg, var(--paper-alt) 0, var(--paper-alt) calc(100% - 140px), #fff calc(100% - 140px));
   }
   .hero .container {
     position: relative;
@@ -91,21 +94,20 @@ const checks = [
   }
   .hero-grid {
     display: grid;
-    gap: 40px;
+    gap: 32px;
   }
   .hero-eyebrow {
     display: inline-flex;
     align-items: center;
-    padding: 7px 16px;
+    padding: 6px 16px;
     border: 1px solid var(--line);
     border-radius: 999px;
     background: #fff;
-    box-shadow: var(--shadow-sm);
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.08em;
     color: var(--accent-dark);
-    margin-block-end: 26px;
+    margin-block-end: 22px;
   }
   .hero-title {
     font-size: var(--fs-display);
@@ -120,49 +122,52 @@ const checks = [
     text-decoration-thickness: 0.09em;
     text-underline-offset: 0.14em;
   }
+  /* リードはカンプ同様に濃いインク（実測 #171c2d）で、太さは標準 */
   .hero-sub {
-    margin-block-start: 28px;
-    color: var(--ink-2);
-    font-weight: 500;
-    font-size: var(--fs-lead);
-    line-height: 1.9;
+    margin-block-start: 20px;
+    color: #1f2a3c;
+    font-weight: 400;
+    font-size: var(--fs-hero-lead);
+    line-height: 1.75;
     max-width: 38em;
   }
   .hero-btns {
     display: flex;
-    gap: 14px 16px;
+    gap: 12px 14px;
     flex-wrap: wrap;
     align-items: center;
-    margin-block-start: 36px;
+    margin-block-start: 28px;
   }
-  /* 信頼チェック行（カンプ2の緑チェック列） */
+  /* 信頼チェック行（カンプの緑チェック列: アイコン ≈ 文字サイズ） */
   .hero-checks {
     list-style: none;
     display: grid;
-    gap: 10px 28px;
-    margin-block-start: 30px;
+    gap: 8px 24px;
+    margin-block-start: 24px;
   }
   .hero-checks li {
     display: flex;
     align-items: flex-start;
-    gap: 9px;
-    font-size: 13.5px;
-    font-weight: 600;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 700;
     letter-spacing: 0.02em;
     color: var(--ink);
     line-height: 1.6;
   }
   .hero-checks svg {
-    width: 19px;
-    height: 19px;
+    width: 16px;
+    height: 16px;
     flex: none;
-    margin-block-start: 2px;
+    margin-block-start: 3px;
   }
-  /* 右の写真パネル（大きな角丸＋柔らかい影） */
+  .hero-checks circle {
+    fill: var(--accent);
+  }
+  /* 右の写真パネル（カンプ: 影なし・控えめな角丸） */
   .hero-photo {
-    border-radius: 24px;
+    border-radius: var(--radius-photo);
     overflow: hidden;
-    box-shadow: var(--shadow-lg);
     aspect-ratio: 16 / 10;
   }
   .hero-photo img {
@@ -215,21 +220,26 @@ const checks = [
   }
   @media (min-width: 860px) {
     .hero {
-      padding-block-start: 84px;
+      padding-block-start: 64px;
+      background: linear-gradient(180deg, var(--paper-alt) 0, var(--paper-alt) calc(100% - 240px), #fff calc(100% - 240px));
     }
+    /* 写真 = コンテナの 50%、段間 ≈ 3.7%（実測） */
     .hero-grid {
-      grid-template-columns: 1.04fr 0.96fr;
+      grid-template-columns: minmax(0, 1fr) 50%;
       align-items: center;
-      gap: 52px;
+      gap: 40px;
     }
     .hero-title {
-      line-height: 1.24;
+      line-height: 1.28;
     }
+    /* カンプ同様、チェック項目は横並びで流す（幅が足りない項目だけ次の行へ） */
     .hero-checks {
-      grid-template-columns: 1fr 1fr;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 22px;
     }
     .hero-photo {
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 1.91 / 1;
     }
     .hero-photo img {
       object-position: 50% 30%;

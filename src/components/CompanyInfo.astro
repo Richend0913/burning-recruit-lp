@@ -17,7 +17,7 @@ const rows = [
 <section class="section" id="company">
   <div class="container">
     <SectionHead no="08" label="運営者情報" title="運営者について" />
-    <dl class="company">
+    <dl class="company center-block">
       {
         rows.map((row) => (
           <div class="row">
@@ -27,19 +27,23 @@ const rows = [
         ))
       }
     </dl>
-    <p class="fineprint">
+    <p class="fineprint center-block">
       当社は募集の仕組みの提供と運用事務の代行を行う事業者であり、有料職業紹介事業ではありません。候補者の選別・推薦・採否には関与しません。
     </p>
   </div>
 </section>
 
 <style>
+  /* 運営者情報はバンド（白→バンドの交互リズム）。フッターはさらに一段濃いバンド */
+  #company {
+    background: var(--paper-alt);
+  }
   .company {
     max-width: 640px;
     border-block-start: 2px solid var(--ink);
   }
   .company dd a {
-    color: var(--accent);
+    color: var(--accent-dark);
     font-weight: 700;
     text-underline-offset: 3px;
   }
@@ -57,8 +61,8 @@ const rows = [
   }
   .fineprint {
     font-size: 12.5px;
-    color: var(--ink-3);
+    color: var(--ink-2);
     margin-block-start: 18px;
-    max-width: 44em;
+    max-width: 640px;
   }
 </style>
