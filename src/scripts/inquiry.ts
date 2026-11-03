@@ -1,5 +1,5 @@
 /**
- * お問い合わせフォーム送信（formsubmit.co 経由で mimoria.inc@gmail.com へ）。
+ * お問い合わせフォーム送信（formsubmit.co 経由で info@mimoria.jp へ）。
  * 初回送信時に formsubmit から有効化（activation）メールがその受信箱に届くので、
  * 運営側で一度だけリンクをクリックして有効化すること。
  */
@@ -52,7 +52,7 @@ if (form) {
     };
     btn.disabled = true;
     btn.textContent = '送信中…';
-    fetch('https://formsubmit.co/ajax/mimoria.inc@gmail.com', {
+    fetch('https://formsubmit.co/ajax/info@mimoria.jp', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify(data),
@@ -71,7 +71,7 @@ if (form) {
       })
       .catch(() => {
         show(
-          '送信に失敗しました。お手数ですが、メール mimoria.inc@gmail.com へ直接ご連絡ください。',
+          '送信に失敗しました。お手数ですが、メール info@mimoria.jp へ直接ご連絡ください。',
           false,
         );
       })

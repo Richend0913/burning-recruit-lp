@@ -7,7 +7,7 @@
 export const jobsUrl = 'https://jobs.mimoria.jp/';
 export const demoUrl = 'https://richend0913.github.io/demo-recruit/';
 export const lineUrl = 'https://lin.ee/8rR88pb';
-export const contactEmail = 'mimoria.inc@gmail.com';
+export const contactEmail = 'info@mimoria.jp';
 export const contactTel = '080-8956-0913';
 export const contactTelHref = 'tel:08089560913';
 
