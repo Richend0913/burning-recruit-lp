@@ -2,25 +2,91 @@
 import SectionHead from './SectionHead.astro';
 import Phrases from './Phrases.astro';
 import { features } from '../data/content';
+
+/* 提供内容のラインアイコン（features の並び順に対応）。絵文字は使わない */
+const icons = [
+  // 01 採用ページ制作: ブラウザ画面
+  '<rect x="3" y="4" width="18" height="16" rx="2" /><path d="M3 8.5h18" /><path d="M7 13h6M7 16.5h10" />',
+  // 02 24時間応募受付: 時計
+  '<circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.2 2" />',
+  // 03 応募者一覧（CSV）: 表
+  '<rect x="3" y="4" width="18" height="16" rx="2" /><path d="M3 9.5h18M3 15h18M9 4v16" />',
+  // 04 月次レポート: 棒グラフ
+  '<path d="M4 20h16" /><path d="M7 16v-4M12 16V7M17 16v-6" />',
+];
 ---
 
-<section class="section section--alt" id="service">
+<section class="section" id="service">
   <div class="container">
     <SectionHead no="02" label="提供内容" title="納品するのは、この4つです。" />
-    <div class="rows rows--2col">
+    <div class="rows rows--2col feat">
       {
-        features.map((f) => (
+        features.map((f, i) => (
           <div class="row-item">
-            <span class="num">{f.no}</span>
-            <h3>
-              <Phrases text={f.title} />
-            </h3>
-            <p>
-              <Phrases text={f.body} />
-            </p>
+            <span class="l-icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                set:html={icons[i]}
+              />
+            </span>
+            <div class="feat-body">
+              <span class="num">{f.no}</span>
+              <h3>
+                <Phrases text={f.title} />
+              </h3>
+              <p>
+                <Phrases text={f.body} />
+              </p>
+            </div>
           </div>
         ))
       }
     </div>
   </div>
 </section>
+
+<style>
+  /* カンプ FEATURES 文法: 左にグリーンのラインアイコン、右に番号つき見出し＋本文 */
+  .feat .row-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0 20px;
+    align-items: start;
+  }
+  .feat .num {
+    display: block;
+    font-family: var(--font-num);
+    font-feature-settings: 'tnum' 1;
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    line-height: 1.4;
+    margin-block-end: 4px;
+  }
+  .feat h3 {
+    font-size: 19px;
+  }
+  @media (min-width: 860px) {
+    .feat .row-item {
+      gap: 0 24px;
+      padding: 34px 34px 36px;
+    }
+    .feat h3 {
+      font-size: 20px;
+    }
+  }
+  @media (max-width: 420px) {
+    .feat .row-item {
+      grid-template-columns: 1fr;
+    }
+    .feat .l-icon {
+      margin-block-end: 16px;
+    }
+  }
+</style>

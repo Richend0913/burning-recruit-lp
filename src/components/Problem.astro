@@ -3,7 +3,7 @@ import SectionHead from './SectionHead.astro';
 import Phrases from './Phrases.astro';
 import { problems, compareRows } from '../data/content';
 
-/* 課題カードのアイコン（カンプ2の緑チップ）。problems の並び順に対応 */
+/* 課題カードのラインアイコン。problems の並び順に対応 */
 const icons = [
   // 応募がそもそも来ない: 虫眼鏡
   '<circle cx="11" cy="11" r="7" /><path d="M20.5 20.5L16.7 16.7" />',
@@ -14,19 +14,19 @@ const icons = [
 ];
 ---
 
-<section class="section" id="problem">
+<section class="section section--alt" id="problem">
   <div class="container">
     <SectionHead no="01" label="課題" title="採用の困りごとは、だいたいこの3つです。" />
     <div class="rows rows--3col rows--icons">
       {
         problems.map((item, i) => (
           <div class="row-item">
-            <span class="p-icon" aria-hidden="true">
+            <span class="l-icon" aria-hidden="true">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="1.8"
+                stroke-width="1.6"
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 set:html={icons[i]}
@@ -42,7 +42,7 @@ const icons = [
         ))
       }
     </div>
-    <p class="lead after">
+    <p class="lead after center-block">
       <Phrases text="そのうえ採用のたびに大きな費用がかかる構造も、現場の負担になっています。" />
     </p>
     <table class="cmp">
@@ -69,107 +69,119 @@ const icons = [
 </section>
 
 <style>
-  /* 課題カード: 上端に緑のアイコンチップを重ねる（カンプ2） */
-  /* 課題カード: 上辺にまたがる淡緑のアイコンチップ（実測: チップ #cde7d7・線は濃緑・影なし） */
-  .rows.rows--icons {
-    margin-block-start: 32px;
-    gap: 36px 16px;
-  }
-  .rows--icons .row-item {
-    position: relative;
-    padding-block-start: 34px;
-  }
-  .p-icon {
-    position: absolute;
-    top: -20px;
-    left: 24px;
-    display: grid;
-    place-items: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-    background: var(--accent-chip);
-    color: var(--accent-dark);
-  }
-  .p-icon svg {
-    width: 22px;
-    height: 22px;
+  /* 課題カード: 白カードの左上にグリーンのラインアイコン */
+  .rows--icons .l-icon {
+    margin-block-end: 20px;
   }
   .after {
-    margin-block-start: 48px;
+    margin-block-start: 56px;
+    font-weight: 700;
+    color: var(--ink);
   }
-  /* 料金比較は「仕様表」として白パネルに載せる */
+  @media (min-width: 860px) {
+    .after {
+      margin-block-start: 72px;
+      text-align: center;
+    }
+  }
+
+  /* 料金比較: エレガントな表。自社行はグリーン枠＋淡いティントで強調 */
   .cmp {
     width: 100%;
+    max-width: 960px;
+    margin-inline: auto;
     border-collapse: separate;
-    border-spacing: 0;
-    margin-block-start: 28px;
+    border-spacing: 0 10px;
+    margin-block-start: 18px;
     font-size: 15px;
+  }
+  .cmp tr {
     background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-sm);
-    overflow: hidden;
   }
   .cmp th,
   .cmp td {
-    padding: 20px 24px;
+    padding: 22px 28px;
     text-align: left;
-    vertical-align: baseline;
-    border-block-end: 1px solid var(--line-soft);
-  }
-  .cmp tr:last-child th,
-  .cmp tr:last-child td {
-    border-block-end: 0;
+    vertical-align: middle;
+    border-block: 1px solid var(--line);
   }
   .cmp th {
+    border-inline-start: 1px solid var(--line);
+    border-start-start-radius: var(--radius);
+    border-end-start-radius: var(--radius);
     font-weight: 700;
     letter-spacing: 0.03em;
     white-space: nowrap;
-    padding-inline-end: 20px;
-    width: 22%;
+    width: 24%;
+  }
+  .cmp-desc {
+    border-inline-end: 1px solid var(--line);
+    border-start-end-radius: var(--radius);
+    border-end-end-radius: var(--radius);
+    color: var(--ink-2);
+    font-size: 14px;
   }
   .cmp-price {
     font-family: var(--font-num);
-    font-weight: 800;
+    font-weight: 700;
     font-size: 24px;
     font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
     white-space: nowrap;
     width: 24%;
+    color: var(--ink);
   }
   .cmp-unit {
     font-family: var(--font);
     font-size: 13px;
     font-weight: 500;
     color: var(--ink-3);
-    margin-inline-start: 2px;
-  }
-  .cmp-desc {
-    color: var(--ink-2);
-    font-size: 14px;
+    margin-inline-start: 3px;
   }
   .cmp tr.us {
     background: var(--accent-tint);
+  }
+  .cmp tr.us th,
+  .cmp tr.us td {
+    border-color: var(--accent);
+    border-block-width: 2px;
+  }
+  .cmp tr.us th {
+    border-inline-start-width: 2px;
+  }
+  .cmp tr.us .cmp-desc {
+    border-inline-end-width: 2px;
+    color: var(--ink);
   }
   .cmp tr.us th,
   .cmp tr.us .cmp-price {
     color: var(--accent-dark);
   }
   @media (max-width: 640px) {
+    .cmp,
+    .cmp tbody {
+      display: grid;
+      gap: 10px;
+    }
     .cmp tr {
       display: grid;
       grid-template-columns: 1fr auto;
       align-items: baseline;
       padding: 18px 20px;
-      border-block-end: 1px solid var(--line-soft);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
     }
-    .cmp tr:last-child {
-      border-block-end: 0;
+    .cmp tr.us {
+      border: 2px solid var(--accent);
+      padding: 17px 19px;
     }
     .cmp th,
-    .cmp td {
+    .cmp td,
+    .cmp tr.us th,
+    .cmp tr.us td {
       padding: 0;
-      border-block-end: 0;
+      border: 0;
+      border-radius: 0;
     }
     .cmp th {
       width: auto;
@@ -178,7 +190,8 @@ const icons = [
       white-space: normal;
     }
     .cmp-price {
-      font-size: 19px;
+      width: auto;
+      font-size: 20px;
       text-align: right;
     }
     .cmp-desc {
@@ -188,9 +201,11 @@ const icons = [
     }
   }
   .note {
-    margin-block-start: 18px;
-    color: var(--ink-2);
-    font-size: 14.5px;
-    max-width: var(--w-text);
+    margin-block-start: 14px;
+    margin-inline: auto;
+    color: var(--ink-3);
+    font-size: 13.5px;
+    line-height: 1.85;
+    max-width: 960px;
   }
 </style>

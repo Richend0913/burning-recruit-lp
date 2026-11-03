@@ -1,47 +1,48 @@
 /*
- * MIMORIA RECRUIT LP — デザインシステム
- * Design Comp 2（2026-11-03 オーナー選定）: 日本の優良 B2B 系の設計言語。
- * - 地は白、セクションは淡いブルーグレー（実測 #e1e9f2）のトーンバンドと白を交互に。フッターは一段濃い #d8e4f0
- * - アクセントはフレッシュグリーン 1 色（実測 #289c57）: CTA・チェック・強調にだけ使う
- * - 文字は濃紺インク（実測 #111b2e）。パネルは白＋細枠＋ごく淡い影、角丸は控えめ（8–12px）
- * - 2026-11-03 実測フィデリティパス: 値の根拠は各トークンのコメント参照
- * - ボタンはフルピル（主 = グリーン塗り / 副 = アウトライン）
- * - 数字は Inter の tabular。タイポグラフィは離散ステップ（clamp 不使用）
- * - 余白は 4px 倍数、コンテナ 1120px。本文行間 1.75
- * - モーションは機能的なものだけ（≤300ms / ease-out / transform・opacity のみ）
+ * MIMORIA RECRUIT LP — デザインシステム（2026-11-03 刷新・案1）
+ * 正: design-comps-2026-11-03-refresh の RECRUIT PC カンプ＋mimoria モバイルカンプの文法。
+ * - 地は白。バンドは淡いウォームストーングレー #f6f5f1（旧ブルーグレー #e1e9f2 系は廃止）
+ * - インクは濃紺 #0e1a2e。アクセントはビビッドグリーン #1aa34a の 1 色だけ
+ *   （CTA・推奨プランの枠とバッジ・チェック・工程の数字円・ラインアイコンに限定）
+ * - ボタンは角丸 7px の矩形（主 = グリーン塗り＋白文字＋矢印 / 副 = 白地＋ベージュグレー枠＋紺文字）
+ * - カードは白＋1px 細枠 #e3e1da＋ごく淡い影、角丸 12px。写真は 16px
+ * - 見出し: ヒーロー特大（PC 56px / 800 / 行間 1.25）、セクションは英数字キッカー風ラベル＋日本語タイトル
+ * - コンテナ 1160px、セクション余白 PC 96px / SP 64px
+ * - 和文の改行は BudouX（Phrases）で文節単位を維持
+ * - モーションは機能的なものだけ（≤200ms / ease-out / transform・色のみ）
  */
 
 :root {
-  /* 実測値（/tmp/fidelity/measured.md）: カンプの画素サンプリングから導出 */
-  --ink: #111b2e; /* 見出しストローク #01031d〜リード #171c2d の実測から */
-  --ink-2: #3a4657; /* カード本文の実測 #303034 を紺寄りに */
-  --ink-3: #6e7f93;
-  --ink-deep: #111b2e;
-  --line: #d5dbe3; /* カード枠 1px 実効色 ≈ #d3d8df */
-  --line-soft: #e6ebf0;
+  --ink: #0e1a2e;
+  --ink-2: #414a59;
+  --ink-3: #6f7681;
+  --ink-deep: #0e1a2e;
+  --line: #e3e1da; /* カード枠 */
+  --line-soft: #ecebe6; /* 表の行区切り */
+  --line-strong: #d4d0c6; /* 副ボタン・入力欄の枠（グレーベッジ） */
   --paper: #ffffff;
-  --paper-alt: #e1e9f2; /* ヒーローバンド実測 #e0e8f1 / #e1e9f2 */
-  --paper-deep: #d8e4f0; /* フッターバンド実測 */
-  --paper-strip: #f0f4f7; /* プラン説明ストリップ実測 */
-  --accent: #289c57; /* CTA #349f59 / ナビCTA #299b57 / 推奨ボタン #279d58 の中央値 */
-  --accent-dark: #1d7d45;
+  --paper-alt: #f6f5f1; /* ストーンバンド */
+  --paper-deep: #efede7; /* フッター */
+  --paper-strip: #f6f5f1;
+  --accent: #1aa34a;
+  --accent-dark: #138a3c;
   --accent-ink: #ffffff;
   --accent-2: #d64541;
-  --accent-tint: #e6f3eb;
-  --accent-chip: #cde7d7; /* アイコンチップ実測 */
-  --outline: #8b98aa; /* 副ボタン枠の実測 */
+  --accent-tint: #eef8f1;
+  --accent-tint-2: #dff1e5;
+  --accent-chip: #e6f5eb;
+  --outline: #d4d0c6;
 
   --font: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans',
     'BIZ UDPGothic', 'Yu Gothic UI', Meiryo, sans-serif;
   --font-num: 'Inter', 'Noto Sans JP', sans-serif;
 
-  --w-wide: 1120px;
+  --w-wide: 1160px;
   --w-text: 42rem;
 
-  /* タイプスケール（離散ステップ。860px / 1120px で段階を上げる）
-     実測比: 見出し/リード ≈ 2.15、セクション見出し ≈ 0.67 × ヒーロー見出し */
+  /* タイプスケール（離散ステップ。860px / 1120px で段階を上げる） */
   --fs-display: 34px;
-  --fs-h2: 24px;
+  --fs-h2: 25px;
   --fs-h3: 17px;
   --fs-lead: 15.5px;
   --fs-hero-lead: 16px;
@@ -50,36 +51,42 @@
   --fs-xs: 12.5px;
 
   --section-pad: 64px;
-  /* 角丸の実測: カード ≈ 幅の 2.2%、プラン ≈ 2.7%、写真 ≈ 2.0% */
-  --radius: 8px;
-  --radius-plan: 10px;
-  --radius-photo: 12px;
-  /* 影はカンプではほぼ見えない（下辺 4px 程度の淡い滲み） */
+  --radius-btn: 7px;
+  --radius: 12px;
+  --radius-plan: 14px;
+  --radius-photo: 16px;
   --shadow-lg:
-    0 24px 48px -12px rgba(18, 40, 60, 0.18),
-    0 12px 28px -12px rgba(18, 40, 60, 0.12);
+    0 22px 48px -18px rgba(14, 26, 46, 0.2),
+    0 8px 20px -10px rgba(14, 26, 46, 0.1);
   --shadow-md:
-    0 8px 22px rgba(17, 27, 46, 0.06),
-    0 2px 6px rgba(17, 27, 46, 0.04);
-  --shadow-sm: 0 2px 6px rgba(17, 27, 46, 0.04);
+    0 10px 28px -12px rgba(14, 26, 46, 0.12),
+    0 2px 6px rgba(14, 26, 46, 0.04);
+  --shadow-sm:
+    0 6px 18px -10px rgba(14, 26, 46, 0.1),
+    0 1px 2px rgba(14, 26, 46, 0.04);
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+
+  /* モバイル下部固定 CTA バーの高さ（body 下余白の確保に使う） */
+  --bar-h: 72px;
 }
 
 @media (min-width: 860px) {
   :root {
-    --fs-display: 40px;
-    --fs-h2: 28px;
+    --fs-display: 46px;
+    --fs-h2: 32px;
     --fs-h3: 18px;
-    --fs-lead: 17px;
-    --fs-hero-lead: 18px;
+    --fs-lead: 16.5px;
+    --fs-hero-lead: 17px;
     --section-pad: 88px;
   }
 }
 
 @media (min-width: 1120px) {
   :root {
-    --fs-display: 44px;
-    --fs-hero-lead: 20px;
+    --fs-display: 56px;
+    --fs-h2: 34px;
+    --fs-hero-lead: 18px;
+    --section-pad: 100px;
   }
 }
 
@@ -114,15 +121,15 @@ body {
   line-break: strict;
   word-break: normal;
   overflow-wrap: break-word;
-  padding-block-end: calc(57px + env(safe-area-inset-bottom));
+  overflow-x: clip;
+  padding-block-end: calc(var(--bar-h) + env(safe-area-inset-bottom));
 }
 @media (min-width: 860px) {
   body {
     padding-block-end: 0;
   }
 }
-/* BudouX で包んでいない地の文（注記・表・会社情報など）も、対応ブラウザでは文節で折り返す。
-   DOM は変えない（CSS のみ）。非対応ブラウザは従来どおり word-break: normal */
+/* BudouX で包んでいない地の文（注記・表・会社情報など）も、対応ブラウザでは文節で折り返す。 */
 @supports (word-break: auto-phrase) {
   body {
     word-break: auto-phrase;
@@ -138,7 +145,11 @@ a {
   color: inherit;
 }
 ::selection {
-  background: #bfe6cd;
+  background: #c6ebd2;
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 /* ---------- レイアウト ---------- */
@@ -157,9 +168,13 @@ a {
 .section {
   padding-block: var(--section-pad);
 }
-/* トーンバンド: カンプ同様、白とバンドを交互に。バンド境界は硬いエッジ */
+/* ストーンバンド: 白とバンドを交互に。境界は硬いエッジ */
 .section--alt {
   background: var(--paper-alt);
+}
+/* 白セクションが続く箇所の区切り（ヘアライン） */
+.section--rule {
+  border-block-start: 1px solid var(--line);
 }
 
 /* アンカー先が固定ヘッダーに隠れないように */
@@ -182,57 +197,112 @@ h3 {
 .section-head {
   margin-block-end: 36px;
 }
-/* カンプはセクション見出し（タイトル＋サブ）を中央揃え。長文の多いモバイルは左揃えのまま */
 @media (min-width: 860px) {
   .section-head {
-    margin-block-end: 40px;
+    margin-block-end: 52px;
     text-align: center;
   }
   .section-head .lead {
     margin-inline: auto;
   }
-  /* 中央見出しの下に置く単独ブロックは中央に寄せる（文字組みは左揃え） */
   .center-block {
     margin-inline: auto;
   }
 }
+/* キッカー: 小さな英数字番号（Inter・字間広め）＋細線＋ラベル。色はグレー */
 .section-label {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-size: 12px;
+  gap: 12px;
+  font-size: 12.5px;
   font-weight: 700;
-  letter-spacing: 0.16em;
-  color: var(--accent-dark);
-  margin-block-end: 16px;
-}
-.section-label::before {
-  content: '';
-  width: 22px;
-  height: 3px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #57c785, var(--accent));
-  flex: none;
+  letter-spacing: 0.22em;
+  color: var(--ink-3);
+  margin-block-end: 14px;
 }
 .section-label .no {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   font-family: var(--font-num);
   font-feature-settings: 'tnum' 1;
   font-size: 12.5px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-weight: 600;
+  letter-spacing: 0.18em;
   color: var(--accent-dark);
+}
+.section-label .no::after {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+.section-label:not(:has(.no))::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+  flex: none;
 }
 .section-head h2 {
   font-size: var(--fs-h2);
-  line-height: 1.4;
+  line-height: 1.38;
   letter-spacing: -0.015em;
 }
 .lead {
-  margin-block-start: 12px;
+  margin-block-start: 14px;
   color: var(--ink-2);
   font-size: var(--fs-lead);
   line-height: 1.85;
   max-width: var(--w-text);
+}
+
+/* ---------- ヒーロー共通（index / case） ---------- */
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent-dark);
+  margin-block-end: 18px;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+  flex: none;
+}
+.hero-title {
+  font-size: var(--fs-display);
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+.hero-title .hl {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.16em;
+}
+.hero-sub {
+  margin-block-start: 22px;
+  color: var(--ink-2);
+  font-weight: 400;
+  font-size: var(--fs-hero-lead);
+  line-height: 1.85;
+  max-width: 38em;
+}
+@media (min-width: 860px) {
+  .hero-title {
+    line-height: 1.25;
+  }
 }
 
 /* ---------- ボタン ---------- */
@@ -241,50 +311,40 @@ h3 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  min-height: 52px;
-  padding: 13px 30px;
+  gap: 10px;
+  min-height: 54px;
+  padding: 13px 28px;
   font-weight: 700;
   font-size: 15.5px;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
   text-decoration: none;
   border: 1px solid transparent;
-  border-radius: 999px;
+  border-radius: var(--radius-btn);
   cursor: pointer;
   transition:
     background-color 180ms var(--ease-out),
+    border-color 180ms var(--ease-out),
     color 180ms var(--ease-out),
-    box-shadow 180ms var(--ease-out),
-    transform 180ms var(--ease-out);
+    box-shadow 180ms var(--ease-out);
 }
-/* カンプの主ボタンはフラット（影なし）なので、影はごく薄く */
 .btn--primary {
   background: var(--accent);
   color: var(--accent-ink);
-  box-shadow: 0 2px 6px rgba(40, 156, 87, 0.18);
+  box-shadow: 0 1px 2px rgba(19, 138, 60, 0.25);
 }
 .btn--primary:hover {
   background: var(--accent-dark);
-  box-shadow: 0 4px 12px rgba(40, 156, 87, 0.24);
 }
-.btn--white {
+.btn--white,
+.btn--ghost {
   background: #fff;
   color: var(--ink);
-  border-color: var(--line);
-  box-shadow: var(--shadow-sm);
+  border-color: var(--line-strong);
+  box-shadow: 0 1px 2px rgba(14, 26, 46, 0.04);
 }
-.btn--white:hover {
-  border-color: var(--ink-3);
-}
-/* 副ボタン: 地色が透ける塗りなし＋スレートの細枠（カンプ実測） */
-.btn--ghost {
-  background: transparent;
-  color: var(--ink);
-  border: 1.5px solid var(--outline);
-}
+.btn--white:hover,
 .btn--ghost:hover {
-  border-color: var(--accent);
-  color: var(--accent-dark);
+  border-color: var(--ink-3);
 }
 /* 矢印付きボタン: グリフが少しだけ進む */
 .btn--arrow::after {
@@ -306,7 +366,7 @@ h3 {
   letter-spacing: 0.03em;
   color: var(--ink);
   text-decoration: underline;
-  text-decoration-color: #a9dcc0;
+  text-decoration-color: #a9dcbb;
   text-decoration-thickness: 2px;
   text-underline-offset: 6px;
   transition: text-decoration-color 180ms var(--ease-out);
@@ -325,17 +385,17 @@ h3 {
   transform: translateX(3px);
 }
 
-/* ---------- MIMORIA RECRUIT 固有の共通部品 ---------- */
+/* ---------- 共通部品 ---------- */
 
-/* 正直にお伝えする注記ボックス（白パネルで示す） */
+/* 正直にお伝えする注記ボックス */
 .notice {
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   color: var(--ink-2);
   font-size: 14px;
-  line-height: 1.9;
-  padding: 24px 28px;
+  line-height: 1.95;
+  padding: 26px 30px;
   max-width: 52rem;
   box-shadow: var(--shadow-sm);
 }
@@ -349,39 +409,49 @@ h3 {
   white-space: nowrap;
 }
 
-/* テキスト中のアクセントリンク */
 .a-link {
   color: var(--accent-dark);
   font-weight: 700;
   text-underline-offset: 3px;
 }
 
-/* 番号チップつきパネルリスト */
+/* ラインアイコン（グリーンの細線・淡いティントの角丸チップ） */
+.l-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--accent-chip);
+  color: var(--accent);
+  flex: none;
+}
+.l-icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+/* カード（白＋細枠＋淡い影） */
 .rows {
   display: grid;
   gap: 16px;
-  margin-block-start: 8px;
 }
 .row-item {
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
-  padding: 24px 26px;
+  padding: 26px 26px 28px;
 }
-.row-item .num {
-  display: inline-flex;
-  align-items: center;
+.row-item > .num {
+  display: block;
   font-family: var(--font-num);
   font-feature-settings: 'tnum' 1;
-  color: var(--accent-dark);
-  background: var(--accent-tint);
+  color: var(--accent);
   font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  padding: 4px 12px;
-  border-radius: 999px;
-  margin-block-end: 12px;
+  letter-spacing: 0.14em;
+  margin-block-end: 8px;
 }
 .row-item h3 {
   font-size: var(--fs-h3);
@@ -390,85 +460,138 @@ h3 {
 .row-item p {
   color: var(--ink-2);
   font-size: 15px;
-  line-height: 1.8;
-  margin-block-start: 8px;
+  line-height: 1.85;
+  margin-block-start: 10px;
   max-width: var(--w-text);
 }
 @media (min-width: 860px) {
-  /* カード間隔の実測: コンテナの 1.15% ≈ 12–16px */
+  .rows {
+    gap: 20px;
+  }
+  .row-item {
+    padding: 30px 30px 32px;
+  }
   .rows--2col {
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
   }
   .rows--3col {
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
   }
 }
 
-/* 手順リスト（番号チップ＋白パネル） */
+/* 工程（カンプ PROCESS 文法: 緑の数字円＋接続線。PC 横並び / SP 縦） */
 .steps {
+  list-style: none;
   display: grid;
-  gap: 16px;
-  margin-block-start: 8px;
+  gap: 0;
 }
 .step-item {
+  position: relative;
   display: grid;
-  grid-template-columns: 42px 1fr;
-  gap: 4px 18px;
-  align-items: start;
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  padding: 22px 24px;
+  grid-template-columns: 44px 1fr;
+  gap: 2px 18px;
+  padding-block-end: 28px;
+}
+.step-item:last-child {
+  padding-block-end: 0;
+}
+/* SP: 数字円の下から次の円まで縦の接続線 */
+.step-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 21px;
+  top: 52px;
+  bottom: 8px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--accent-tint-2);
 }
 .step-item .sno {
   grid-row: 1 / 3;
   display: grid;
   place-items: center;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: var(--accent);
   color: #fff;
   font-family: var(--font-num);
   font-feature-settings: 'tnum' 1;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 700;
-  letter-spacing: 0.02em;
+  box-shadow: 0 0 0 5px var(--accent-tint);
 }
 .step-item h3 {
   font-size: var(--fs-h3);
   line-height: 1.55;
-  padding-block-start: 8px;
+  padding-block-start: 9px;
 }
 .step-item p {
   grid-column: 2;
   color: var(--ink-2);
   font-size: 14.5px;
-  line-height: 1.8;
-  max-width: var(--w-text);
+  line-height: 1.85;
+  margin-block-start: 6px;
 }
-@media (min-width: 860px) {
-  .steps--2col {
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
+/* 横並びは 4 列が無理なく収まる幅から（それ未満は縦の数字円＋接続線） */
+@media (min-width: 1024px) {
+  .steps--row {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 28px;
+  }
+  .steps--row .step-item {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding-block-end: 0;
+  }
+  .steps--row .step-item .sno {
+    grid-row: auto;
+    width: 52px;
+    height: 52px;
+    font-size: 19px;
+    margin-block-end: 18px;
+  }
+  .steps--row .step-item h3 {
+    padding-block-start: 0;
+  }
+  .steps--row .step-item p {
+    grid-column: 1;
+    margin-block-start: 8px;
+  }
+  /* PC: 数字円の右から次の列まで横の接続線＋矢じり */
+  .steps--row .step-item:not(:last-child)::after {
+    left: 72px;
+    right: -8px;
+    top: 25px;
+    bottom: auto;
+    width: auto;
+    height: 1px;
+    background: var(--line-strong);
+  }
+  .steps--row .step-item:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    right: -8px;
+    top: 22px;
+    width: 7px;
+    height: 7px;
+    border-top: 1px solid var(--ink-3);
+    border-right: 1px solid var(--ink-3);
+    transform: rotate(45deg);
   }
 }
 
-/* 実物・事例へのリンクパネル */
+/* 実物・事例へのリンクカード */
 .link-rows {
   display: grid;
   gap: 16px;
-  margin-block-start: 8px;
 }
 .link-row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 10px 28px;
+  gap: 12px 28px;
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -476,13 +599,17 @@ h3 {
   padding: 24px 26px;
   text-decoration: none;
   scroll-margin-top: 76px;
-  transition: box-shadow 180ms var(--ease-out);
+  transition:
+    box-shadow 180ms var(--ease-out),
+    border-color 180ms var(--ease-out);
 }
 .link-row:hover {
+  border-color: #cfe9d7;
   box-shadow: var(--shadow-md);
 }
 .link-row .lr-main {
-  min-width: min(100%, 30em);
+  min-width: min(100%, 26em);
+  flex: 1 1 26em;
 }
 .link-row .lr-title {
   font-weight: 800;
@@ -493,20 +620,31 @@ h3 {
 .link-row .lr-desc {
   display: block;
   color: var(--ink-2);
-  font-size: 13.5px;
-  line-height: 1.75;
+  font-size: 14px;
+  line-height: 1.8;
   margin-block-start: 6px;
   max-width: 44em;
 }
 .link-row .lr-go {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 6px 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-btn);
   font-weight: 700;
-  font-size: 14.5px;
+  font-size: 14px;
   letter-spacing: 0.03em;
   color: var(--accent-dark);
   white-space: nowrap;
+  transition: border-color 180ms var(--ease-out);
+}
+.link-row:hover .lr-go {
+  border-color: var(--accent);
 }
 .link-row:hover .lr-title {
   text-decoration: underline;
+  text-decoration-color: var(--accent);
   text-underline-offset: 4px;
 }
 

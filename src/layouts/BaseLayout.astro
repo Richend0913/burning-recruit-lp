@@ -109,11 +109,11 @@ const {
     {
       showBar && (
         <div class="bar">
-          <a class="bar-l" href="#contact">
-            フォーム相談
+          <a class="bar-l" href="#price">
+            料金を見る
           </a>
-          <a class="bar-p" href="#demo">
-            デモを見る
+          <a class="bar-p" href="#contact">
+            無料お試しを相談する
           </a>
         </div>
       )
@@ -128,15 +128,15 @@ const {
     }
   }
 
+  /* ヘッダー: 白地＋下ヘアライン */
   .hdr {
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.94);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    /* カンプのヘッダー下端は線ではなく 2–3px の淡い陰り */
-    box-shadow: 0 1px 3px rgba(17, 27, 46, 0.07);
+    border-block-end: 1px solid var(--line);
   }
   .hdr-in {
     display: flex;
@@ -147,7 +147,7 @@ const {
   }
   @media (min-width: 860px) {
     .hdr-in {
-      min-height: 70px;
+      min-height: 76px;
     }
   }
   .brand {
@@ -156,15 +156,16 @@ const {
     gap: 10px;
     font-weight: 800;
     font-size: 17px;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.04em;
     text-decoration: none;
     white-space: nowrap;
+    color: var(--ink);
   }
   .brand::before {
     content: 'M';
-    width: 30px;
-    height: 30px;
-    border-radius: 9px;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
     background: var(--accent);
     color: #fff;
     display: flex;
@@ -172,21 +173,30 @@ const {
     justify-content: center;
     font-family: var(--font-num);
     font-weight: 800;
-    font-size: 15px;
+    font-size: 16px;
     flex: none;
   }
   .brand span {
-    color: var(--accent-dark);
+    color: var(--accent);
   }
+  @media (min-width: 860px) {
+    .brand {
+      font-size: 18px;
+    }
+  }
+  /* ヘッダー CTA: グリーン塗りの矩形 */
   .hdr-cta {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
     background: var(--accent);
     color: #fff;
     text-decoration: none;
     font-weight: 700;
     font-size: 14px;
-    letter-spacing: 0.04em;
-    padding: 10px 24px;
-    border-radius: 999px;
+    letter-spacing: 0.06em;
+    padding: 8px 20px;
+    border-radius: var(--radius-btn);
     white-space: nowrap;
     flex-shrink: 0;
     transition: background-color 180ms var(--ease-out);
@@ -194,18 +204,27 @@ const {
   .hdr-cta:hover {
     background: var(--accent-dark);
   }
+  @media (min-width: 860px) {
+    .hdr-cta {
+      min-height: 46px;
+      padding: 10px 30px;
+      font-size: 15px;
+    }
+  }
 
-  /* フッターは一段濃いバンド（実測 #d8e4f0）。境界は硬いエッジ */
+  /* フッター: 淡いストーン地＋紺文字のライトフッター（旧来の濃いバンドは廃止） */
   .ft {
     background: var(--paper-deep);
+    border-block-start: 1px solid var(--line);
     color: var(--ink-2);
-    padding-block: 56px 64px;
+    padding-block: 48px 56px;
     font-size: 12.5px;
+    line-height: 1.85;
   }
   .ft-name {
     font-weight: 700;
     color: var(--ink);
-    font-size: 13px;
+    font-size: 13.5px;
   }
   .ft-note {
     margin-block-start: 10px;
@@ -213,44 +232,68 @@ const {
   }
   .ft-links {
     display: flex;
-    gap: 8px 20px;
+    gap: 8px 24px;
     flex-wrap: wrap;
-    margin-block-start: 20px;
+    margin-block-start: 24px;
+    padding-block-start: 20px;
+    border-block-start: 1px solid var(--line-strong);
     font-size: 13px;
+    font-weight: 700;
   }
   .ft-links a {
     color: var(--ink);
+    text-decoration: none;
+  }
+  .ft-links a:hover {
+    color: var(--accent-dark);
     text-decoration: underline;
     text-underline-offset: 3px;
   }
 
+  /* モバイル下部固定 CTA バー（mimoria モバイルカンプの文法: 白いトレイに 2 ボタン） */
   .bar {
     position: fixed;
     inset-inline: 0;
     bottom: 0;
     z-index: 60;
-    display: flex;
-    background: #fff;
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 10px;
+    min-height: var(--bar-h);
+    align-items: center;
+    background: rgba(255, 255, 255, 0.97);
     border-block-start: 1px solid var(--line);
-    padding-bottom: env(safe-area-inset-bottom);
+    box-shadow: 0 -8px 24px -16px rgba(14, 26, 46, 0.25);
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
   }
   .bar a {
-    flex: 1;
-    min-height: 56px;
+    min-height: 50px;
     display: grid;
     place-items: center;
+    padding-inline: 6px;
+    border-radius: var(--radius-btn);
     font-weight: 700;
-    font-size: 15px;
-    letter-spacing: 0.05em;
+    font-size: 14.5px;
+    letter-spacing: 0.03em;
+    line-height: 1.3;
+    text-align: center;
     text-decoration: none;
+    white-space: nowrap;
   }
   .bar-l {
+    background: #fff;
     color: var(--ink);
-    border-inline-end: 1px solid var(--line);
+    border: 1px solid var(--line-strong);
   }
   .bar-p {
     background: var(--accent);
     color: var(--accent-ink);
+  }
+  @media (max-width: 374px) {
+    .bar a {
+      font-size: 13px;
+      letter-spacing: 0;
+    }
   }
   @media (min-width: 860px) {
     .bar {

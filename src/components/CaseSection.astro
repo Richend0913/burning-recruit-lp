@@ -1,9 +1,11 @@
 ---
 import SectionHead from './SectionHead.astro';
 import { demoUrl } from '../data/content';
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 
-<section class="section" id="case">
+<section class="section section--alt" id="case">
   <div class="container">
     <SectionHead
       no="05"
@@ -11,23 +13,83 @@ import { demoUrl } from '../data/content';
       title="第1号の導入事例は、支援先の BURNING BROS. です。"
       lead="この仕組みは、当社が採用を支援している軽貨物運送会社 BURNING BROS. が、ドライバー募集で実際に使っているものです。実績の数字は現在積み上げ中のため、盛った事例紹介はしません。運用中の実物と、納品イメージのデモをご覧ください。"
     />
-    <div class="link-rows">
-      <a class="link-row" id="demo" href={demoUrl} target="_blank" rel="noopener">
-        <span class="lr-main">
-          <span class="lr-title">採用LPのデモ｜コスモ軽貨物（ドライバー募集）</span>
-          <span class="lr-desc"
-            >当社が作る採用LPのサンプルです（架空の会社）。手取りシミュレータを動かし、右下のAI応募受付に「未経験でも大丈夫？」と聞いてみてください。</span
-          >
-        </span>
-        <span class="lr-go">デモを開く →</span>
-      </a>
-      <a class="link-row" href="case.html">
-        <span class="lr-main">
-          <span class="lr-title">支援事例｜BURNING BROS. のドライバー募集</span>
-          <span class="lr-desc">実際に運用している採用の仕組みと、正直な現状を公開しています。</span>
-        </span>
-        <span class="lr-go">事例を見る →</span>
-      </a>
+    <div class="case-grid">
+      <figure class="case-photo">
+        <img
+          src={`${base}photo-warehouse.webp`}
+          alt="配送センターで、コンベア上の段ボールを仕分けるスタッフと、荷受け口に停まる軽バン"
+          width="1920"
+          height="1280"
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+      <div class="link-rows">
+        <a class="link-row" id="demo" href={demoUrl} target="_blank" rel="noopener">
+          <span class="lr-main">
+            <span class="lr-title">採用LPのデモ｜コスモ軽貨物（ドライバー募集）</span>
+            <span class="lr-desc"
+              >当社が作る採用LPのサンプルです（架空の会社）。手取りシミュレータを動かし、右下のAI応募受付に「未経験でも大丈夫？」と聞いてみてください。</span
+            >
+          </span>
+          <span class="lr-go">デモを開く →</span>
+        </a>
+        <a class="link-row" href="case.html">
+          <span class="lr-main">
+            <span class="lr-title">支援事例｜BURNING BROS. のドライバー募集</span>
+            <span class="lr-desc">実際に運用している採用の仕組みと、正直な現状を公開しています。</span>
+          </span>
+          <span class="lr-go">事例を見る →</span>
+        </a>
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  .case-grid {
+    display: grid;
+    gap: 20px;
+  }
+  .case-photo {
+    border-radius: var(--radius-photo);
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    box-shadow: var(--shadow-sm);
+  }
+  .case-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  @media (min-width: 960px) {
+    .case-grid {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+    /* 写真はカード列の高さに合わせる（画像の固有高さで行を押し広げない） */
+    .case-photo {
+      position: relative;
+      aspect-ratio: auto;
+      min-height: 320px;
+    }
+    .case-photo img {
+      position: absolute;
+      inset: 0;
+    }
+    .case-grid .link-rows {
+      align-content: center;
+    }
+    /* 写真の横に置くカードは縦積み（タイトル → 説明 → ボタン） */
+    .case-grid .link-row {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 28px 30px;
+    }
+    .case-grid .lr-main {
+      flex: 0 0 auto;
+      min-width: 0;
+    }
+  }
+</style>

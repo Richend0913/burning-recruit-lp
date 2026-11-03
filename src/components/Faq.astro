@@ -4,7 +4,7 @@ import Phrases from './Phrases.astro';
 import { faqItems } from '../data/content';
 ---
 
-<section class="section section--alt" id="faq">
+<section class="section" id="faq">
   <div class="container">
     <SectionHead no="06" label="よくある質問" title="契約の前に、正直に答えます" />
     <div class="faq-list center-block">
@@ -25,47 +25,78 @@ import { faqItems } from '../data/content';
 </section>
 
 <style>
+  /* カンプ FAQ 文法: 白カードのアコーディオン＋右端の円形 ＋/− ボタン（開閉は <details> のまま） */
   .faq-list {
     display: grid;
     gap: 12px;
-    max-width: 46rem;
+    max-width: 50rem;
   }
   details {
     background: var(--paper);
     border: 1px solid var(--line);
     border-radius: var(--radius);
     box-shadow: var(--shadow-sm);
-    padding: 20px 24px;
+    transition: border-color 180ms var(--ease-out);
+  }
+  details[open] {
+    border-color: #cfe9d7;
   }
   summary {
     font-weight: 700;
     font-size: 16px;
+    line-height: 1.65;
     letter-spacing: 0.02em;
     cursor: pointer;
     list-style: none;
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     gap: 16px;
+    padding: 20px 20px 20px 22px;
+    border-radius: var(--radius);
   }
   summary::-webkit-details-marker {
     display: none;
   }
+  /* 円形ボタン: 線 2 本で ＋、開いたら縦線を消して − */
   summary::after {
-    content: '＋';
-    font-weight: 400;
-    color: var(--accent);
-    font-size: 15px;
+    content: '';
     flex: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--line-strong);
+    background:
+      linear-gradient(var(--accent), var(--accent)) center / 12px 2px no-repeat,
+      linear-gradient(var(--accent), var(--accent)) center / 2px 12px no-repeat,
+      #fff;
+    transition:
+      border-color 180ms var(--ease-out),
+      background-color 180ms var(--ease-out);
   }
-  details[open ] summary::after {
-    content: '−';
+  summary:hover::after {
+    border-color: var(--accent);
+  }
+  details[open] summary::after {
+    border-color: var(--accent);
+    background:
+      linear-gradient(var(--accent), var(--accent)) center / 12px 2px no-repeat,
+      var(--accent-tint);
   }
   details p {
     color: var(--ink-2);
     font-size: 15px;
-    line-height: 1.85;
-    margin-block-start: 10px;
+    line-height: 1.9;
+    padding: 0 22px 22px;
     max-width: var(--w-text);
+  }
+  @media (min-width: 860px) {
+    summary {
+      font-size: 17px;
+      padding: 24px 24px 24px 30px;
+    }
+    details p {
+      padding: 0 30px 26px;
+    }
   }
 </style>

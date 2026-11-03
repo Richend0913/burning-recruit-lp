@@ -2,26 +2,42 @@
 import SectionHead from './SectionHead.astro';
 import Phrases from './Phrases.astro';
 import { plans, jobsUrl } from '../data/content';
+
+/* 価格文字列（例「月 80,000円」）を、表示テキストを変えずに「接頭・数字・接尾」へ分けて大数字化する。
+   分割できない形式のときは文字列をそのまま出す */
+const splitPrice = (price: string) => {
+  const m = price.match(/^(\D*?)([\d,]+)(\D*)$/);
+  return m ? { pre: m[1], num: m[2], post: m[3] } : null;
+};
 ---
 
-<section class="section section--alt" id="price">
+<section class="section" id="price">
   <div class="container">
     <SectionHead no="04" label="料金" title="料金プランと、お試し条件です。" />
 
     <div class="plans">
       {
-        plans.map((plan) => (
-          <div class={plan.recommended ? 'plan plan--rec' : 'plan'}>
-            {plan.recommended && <p class="plan-tag">おすすめ</p>}
-            <p class="plan-name">{plan.name}</p>
-            <p class="plan-price">{plan.price}</p>
-            <p class="plan-note">{plan.note}</p>
-          </div>
-        ))
+        plans.map((plan) => {
+          const p = splitPrice(plan.price);
+          return (
+            <div class={plan.recommended ? 'plan plan--rec' : 'plan'}>
+              {plan.recommended && <p class="plan-tag">おすすめ</p>}
+              <p class="plan-name">{plan.name}</p>
+              <p class="plan-price">
+                {p ? (
+                  <><span class="pp-unit">{p.pre}</span><span class="pp-num">{p.num}</span><span class="pp-unit">{p.post}</span></>
+                ) : (
+                  plan.price
+                )}
+              </p>
+              <p class="plan-note">{plan.note}</p>
+            </div>
+          );
+        })
       }
     </div>
 
-    <div class="block center-block">
+    <div class="block block--trial center-block">
       <h3><Phrases text="まずは3ヶ月のお試し期間から" /></h3>
       <p>
         <Phrases
@@ -64,104 +80,123 @@ import { plans, jobsUrl } from '../data/content';
 </section>
 
 <style>
-  /* 実測: プランは中央揃えの白パネル、角丸 ≈ 幅の 2.7%、価格/プラン名 ≈ 1.8、
-     推奨は 2px 緑枠＋上辺中央にまたがる「おすすめ」ピル、説明は全幅の淡色ストリップ */
+  /* カンプ PRICING 文法: 白カード横並び、推奨はグリーン 2px 枠＋上中央の「おすすめ」バッジ */
   .plans {
     display: grid;
-    gap: 24px;
-    margin-block-start: 16px;
+    gap: 28px;
+    max-width: 920px;
+    margin-inline: auto;
+    padding-block-start: 12px;
   }
   .plan {
     position: relative;
     display: grid;
-    gap: 4px;
+    gap: 6px;
+    align-content: start;
     text-align: center;
     background: var(--paper);
     border: 1px solid var(--line);
     border-radius: var(--radius-plan);
     box-shadow: var(--shadow-sm);
-    padding: 26px 24px 0;
+    padding: 34px 24px 0;
     overflow: hidden;
   }
   .plan--rec {
     border: 2px solid var(--accent);
-    padding: 25px 23px 0;
+    padding: 33px 23px 0;
     overflow: visible;
+    box-shadow: 0 18px 40px -20px rgba(19, 138, 60, 0.35);
   }
   .plan-tag {
     position: absolute;
-    top: -13px;
+    top: -15px;
     left: 50%;
     transform: translateX(-50%);
     background: var(--accent);
     color: #fff;
-    font-size: 12.5px;
+    font-size: 13px;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     line-height: 1;
-    padding: 6px 16px;
-    border-radius: 999px;
+    padding: 8px 20px;
+    border-radius: 6px;
     white-space: nowrap;
   }
   .plan-name {
     font-weight: 800;
-    font-size: 17px;
-    letter-spacing: 0.03em;
+    font-size: 18px;
+    letter-spacing: 0.06em;
+  }
+  .plan--rec .plan-name {
+    color: var(--accent-dark);
   }
   .plan-price {
-    font-family: var(--font-num);
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 6px;
     white-space: nowrap;
-    font-weight: 800;
-    font-size: 30px;
+    line-height: 1.2;
+    margin-block: 4px 6px;
+  }
+  .pp-num {
+    font-family: var(--font-num);
+    font-weight: 700;
+    font-size: 44px;
     font-variant-numeric: tabular-nums;
-    letter-spacing: 0.01em;
-    line-height: 1.35;
+    letter-spacing: -0.02em;
+  }
+  .pp-unit {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink-2);
   }
   .plan-note {
     color: var(--ink-2);
     font-size: 13.5px;
-    line-height: 1.7;
+    line-height: 1.75;
     background: var(--paper-strip);
-    margin: 14px -24px 0;
-    padding: 12px 20px;
+    border-block-start: 1px solid var(--line);
+    margin: 18px -24px 0;
+    padding: 14px 20px;
   }
   .plan--rec .plan-note {
     margin-inline: -23px;
-    border-radius: 0 0 8px 8px;
+    background: var(--accent-tint);
+    border-block-start-color: var(--accent-tint-2);
+    border-radius: 0 0 12px 12px;
   }
   @media (min-width: 860px) {
     .plans {
       grid-template-columns: 1fr 1fr;
     }
     .plan {
-      padding: 30px 32px 0;
+      padding: 40px 36px 0;
     }
     .plan--rec {
-      padding: 29px 31px 0;
+      padding: 39px 35px 0;
     }
-    .plan-name {
-      font-size: 18px;
-    }
-    .plan-price {
-      font-size: 32px;
+    .pp-num {
+      font-size: 52px;
     }
     .plan-note {
       font-size: 14px;
-      margin-inline: -32px;
+      margin-inline: -36px;
+      padding: 16px 28px;
     }
     .plan--rec .plan-note {
-      margin-inline: -31px;
+      margin-inline: -35px;
     }
   }
 
   .block {
     margin-block-start: 24px;
-    max-width: 52rem;
+    max-width: 920px;
     background: var(--paper);
     border: 1px solid var(--line);
     border-radius: var(--radius);
     box-shadow: var(--shadow-sm);
-    padding: 26px 28px;
+    padding: 26px 24px;
   }
   .block h3 {
     font-size: var(--fs-h3);
@@ -170,14 +205,32 @@ import { plans, jobsUrl } from '../data/content';
   .block p {
     color: var(--ink-2);
     font-size: 15px;
-    line-height: 1.85;
-    max-width: var(--w-text);
+    line-height: 1.9;
   }
   .block p strong {
     color: var(--ink);
   }
+  /* お試し条件: 淡いグリーンのバンド */
+  .block--trial {
+    margin-block-start: 48px;
+    background: var(--accent-tint);
+    border-color: var(--accent-tint-2);
+    box-shadow: none;
+  }
+  .block--trial h3 {
+    color: var(--accent-dark);
+  }
+  .block--trial p strong {
+    background: linear-gradient(transparent 62%, rgba(26, 163, 74, 0.16) 62%);
+  }
+  @media (min-width: 860px) {
+    .block {
+      padding: 32px 40px;
+    }
+  }
 
   .honest {
     margin-block-start: 24px;
+    max-width: 920px;
   }
 </style>

@@ -4,55 +4,70 @@ import Phrases from './Phrases.astro';
 import { flowSteps, introSteps } from '../data/content';
 ---
 
-<section class="section" id="flow">
+<section class="section section--alt" id="flow">
   <div class="container">
     <SectionHead no="03" label="応募の流れ" title="求職者が見てから、応募が御社に届くまで。" />
-    <div class="steps steps--2col">
-      {
-        flowSteps.map((s, i) => (
-          <div class="step-item">
-            <span class="sno">{i + 1}</span>
-            <h3>
-              <Phrases text={s.title} />
-            </h3>
-            <p>
-              <Phrases text={s.body} />
-            </p>
-          </div>
-        ))
-      }
+    <div class="flow-panel">
+      <div class="steps steps--row">
+        {
+          flowSteps.map((s, i) => (
+            <div class="step-item">
+              <span class="sno">{i + 1}</span>
+              <h3>
+                <Phrases text={s.title} />
+              </h3>
+              <p>
+                <Phrases text={s.body} />
+              </p>
+            </div>
+          ))
+        }
+      </div>
     </div>
 
     <h3 class="sub-title"><Phrases text="導入の流れ（ご利用開始まで）" /></h3>
-    <div class="steps steps--2col">
-      {
-        introSteps.map((s, i) => (
-          <div class="step-item">
-            <span class="sno">{i + 1}</span>
-            <h3>
-              <Phrases text={s.title} />
-            </h3>
-            <p>
-              <Phrases text={s.body} />
-            </p>
-          </div>
-        ))
-      }
+    <div class="flow-panel">
+      <div class="steps steps--row">
+        {
+          introSteps.map((s, i) => (
+            <div class="step-item">
+              <span class="sno">{i + 1}</span>
+              <h3>
+                <Phrases text={s.title} />
+              </h3>
+              <p>
+                <Phrases text={s.body} />
+              </p>
+            </div>
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-  .sub-title {
-    font-size: var(--fs-h3);
-    margin-block-start: 64px;
-    margin-block-end: 4px;
+  /* 2 つの流れを同じ PROCESS 文法の白パネルに載せる */
+  .flow-panel {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-plan);
+    box-shadow: var(--shadow-sm);
+    padding: 28px 22px;
   }
-  /* 中央揃えのセクション見出しに合わせる */
+  .sub-title {
+    font-size: 20px;
+    line-height: 1.5;
+    margin-block: 64px 20px;
+  }
   @media (min-width: 860px) {
+    .flow-panel {
+      padding: 44px 40px 46px;
+    }
     .sub-title {
       text-align: center;
-      margin-block-end: 24px;
+      font-size: 22px;
+      margin-block: 80px 28px;
     }
   }
 </style>

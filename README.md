@@ -8,7 +8,7 @@
 
 ## 技術構成
 
-- **Astro 5 + TypeScript**（静的出力）。ソースは `src/`（layouts / components / data / scripts / styles）に分割。デザインはデザインカンプ2（日本の優良B2B系：白基調＋淡いブルーグレーのバンド＋グリーンのアクセント）に準拠。
+- **Astro 5 + TypeScript**（静的出力）。ソースは `src/`（layouts / components / data / scripts / styles）に分割。デザインはデザインカンプ案1（2026-11-03 オーナー選定：白基調＋淡いストーングレーのバンド＋濃紺インク＋ビビッドグリーンのアクセント、特大見出し＋角丸写真ヒーロー）に準拠。モバイルは mimoria.jp モバイルカンプ案1の文法（特大見出し→写真ブロック→縦積みカード→下部固定2ボタンCTA）。
 - 掲載内容（価格・お試し条件・FAQ など）は `src/data/content.ts` を正とする。
 - 日本語の改行制御: BudouX（`budoux`）で見出し・リード・本文を文節分割し、文節の途中では折り返さない。
 - お問い合わせフォームは formsubmit.co 経由で info@mimoria.jp へ送信（`src/scripts/inquiry.ts`）。

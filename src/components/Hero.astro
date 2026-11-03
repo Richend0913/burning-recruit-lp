@@ -36,7 +36,7 @@ const checks = [
             checks.map((c) => (
               <li>
                 <svg viewBox="0 0 20 20" aria-hidden="true">
-                  <circle cx="10" cy="10" r="10" fill="#1a9e54" />
+                  <circle cx="10" cy="10" r="10" fill="#1aa34a" />
                   <path
                     d="M6 10.4l2.6 2.6L14 7.4"
                     fill="none"
@@ -54,22 +54,24 @@ const checks = [
       </div>
       <figure class="hero-photo">
         <img
-          src={`${base}photo-warehouse.webp`}
-          alt="配送センターで、コンベア上の段ボールを仕分けるスタッフと、荷受け口に停まる軽バン"
+          src={`${base}hero-driver.webp`}
+          alt="開いたトラックのドアにもたれ、笑顔で立つ作業着姿のドライバー"
           width="1920"
           height="1280"
+          fetchpriority="high"
           decoding="async"
         />
       </figure>
     </div>
     <a class="proof" href="#demo" aria-label="制作デモの実物を見る">
-      <span class="proof-bar" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="proof-bar" aria-hidden="true"><i></i><i></i><i></i><b></b></span>
       <span class="proof-media">
         <img
           src={`${base}demo-scene.jpg`}
           alt="制作デモ（架空の運送会社の採用ページ）の実物画面"
           width="2560"
           height="2280"
+          loading="lazy"
           decoding="async"
         />
       </span>
@@ -78,77 +80,59 @@ const checks = [
 </section>
 
 <style>
-  /* 実測（/tmp/fidelity/measured.md）:
-     写真パネル = コンテナの 50% 幅・アスペクト 1.91:1・角丸 ≈ 幅の 2%・影なし
-     見出し/リード ≈ 2.15、見出し→リード 0.5em、バンドは硬いエッジ */
+  /* 白基調のヒーロー。実物パネルは下端から次のストーンバンド（課題）へ食い込ませる */
   .hero {
     position: relative;
-    overflow: hidden;
-    padding-block: 40px 0;
-    /* ヒーローは淡いブルーグレーのバンド。実物パネルの途中で白へ切り替える（硬いエッジ） */
-    background: linear-gradient(180deg, var(--paper-alt) 0, var(--paper-alt) calc(100% - 140px), #fff calc(100% - 140px));
+    padding-block: 28px 0;
+    background: var(--paper);
   }
   .hero .container {
     position: relative;
     z-index: 2;
   }
+  /* SP: 特大見出し → フル幅写真ブロック → リード → CTA → チェック（mimoria モバイル文法） */
   .hero-grid {
-    display: grid;
-    gap: 32px;
+    display: flex;
+    flex-direction: column;
   }
-  .hero-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    padding: 6px 16px;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    background: #fff;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    color: var(--accent-dark);
-    margin-block-end: 22px;
+  .hero-main {
+    display: contents;
   }
+  .hero-eyebrow,
   .hero-title {
-    font-size: var(--fs-display);
-    font-weight: 900;
-    line-height: 1.3;
-    letter-spacing: -0.02em;
-    color: var(--ink);
+    order: 1;
   }
-  .hero-title .hl {
-    text-decoration: underline;
-    text-decoration-color: var(--accent);
-    text-decoration-thickness: 0.09em;
-    text-underline-offset: 0.14em;
+  .hero-photo {
+    order: 2;
   }
-  /* リードはカンプ同様に濃いインク（実測 #171c2d）で、太さは標準 */
-  .hero-sub {
-    margin-block-start: 20px;
-    color: #1f2a3c;
-    font-weight: 400;
-    font-size: var(--fs-hero-lead);
-    line-height: 1.75;
-    max-width: 38em;
+  .hero-sub,
+  .hero-btns,
+  .hero-checks {
+    order: 3;
   }
   .hero-btns {
     display: flex;
-    gap: 12px 14px;
+    gap: 12px;
     flex-wrap: wrap;
     align-items: center;
     margin-block-start: 28px;
   }
-  /* 信頼チェック行（カンプの緑チェック列: アイコン ≈ 文字サイズ） */
+  .hero-btns .btn {
+    flex: 1 1 220px;
+  }
+  /* 信頼チェック行: 上下ヘアラインで区切ったストリップ（カンプ下部の文法） */
   .hero-checks {
     list-style: none;
     display: grid;
-    gap: 8px 24px;
-    margin-block-start: 24px;
+    gap: 10px 28px;
+    margin-block-start: 28px;
+    padding-block: 18px;
+    border-block: 1px solid var(--line);
   }
   .hero-checks li {
     display: flex;
     align-items: flex-start;
-    gap: 8px;
+    gap: 9px;
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 0.02em;
@@ -156,27 +140,29 @@ const checks = [
     line-height: 1.6;
   }
   .hero-checks svg {
-    width: 16px;
-    height: 16px;
+    width: 17px;
+    height: 17px;
     flex: none;
     margin-block-start: 3px;
   }
   .hero-checks circle {
     fill: var(--accent);
   }
-  /* 右の写真パネル（カンプ: 影なし・控えめな角丸） */
+  /* 写真: SP はコンテナ外まで広げたフル幅ブロック */
   .hero-photo {
-    border-radius: var(--radius-photo);
+    margin-block-start: 26px;
+    margin-inline: -20px;
+    aspect-ratio: 4 / 3;
     overflow: hidden;
-    aspect-ratio: 16 / 10;
+    background: var(--paper-alt);
   }
   .hero-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 50% 26%;
+    object-position: 72% 40%;
   }
-  /* 制作デモの実物パネル: ヒーロー下端から次のセクションへ食い込ませる */
+  /* 制作デモの実物パネル（ブラウザ枠つき） */
   .proof {
     display: block;
     position: relative;
@@ -184,28 +170,46 @@ const checks = [
     margin-block-start: 48px;
     margin-block-end: -56px;
     background: #fff;
-    border-radius: 16px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-plan);
     box-shadow: var(--shadow-lg);
     overflow: hidden;
     text-decoration: none;
-    transition: box-shadow 220ms var(--ease-out);
+    transition:
+      box-shadow 200ms var(--ease-out),
+      border-color 200ms var(--ease-out);
   }
   .proof:hover {
+    border-color: #cfe9d7;
     box-shadow:
-      0 30px 56px -12px rgba(18, 40, 60, 0.26),
-      0 16px 32px -14px rgba(18, 40, 60, 0.18);
+      0 28px 56px -18px rgba(14, 26, 46, 0.26),
+      0 10px 24px -12px rgba(14, 26, 46, 0.14);
   }
   .proof-bar {
     display: flex;
+    align-items: center;
     gap: 7px;
-    padding: 12px 16px;
-    border-block-end: 1px solid var(--line-soft);
+    padding: 11px 16px;
+    background: var(--paper-alt);
+    border-block-end: 1px solid var(--line);
   }
   .proof-bar i {
-    width: 11px;
-    height: 11px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    background: #dfe6ee;
+    background: #dcd9d0;
+  }
+  .proof-bar i:first-child {
+    background: var(--accent);
+  }
+  .proof-bar b {
+    flex: 1;
+    max-width: 320px;
+    height: 18px;
+    margin-inline-start: 12px;
+    border-radius: 5px;
+    background: #fff;
+    border: 1px solid var(--line);
   }
   .proof-media {
     display: block;
@@ -221,35 +225,49 @@ const checks = [
   @media (min-width: 860px) {
     .hero {
       padding-block-start: 64px;
-      background: linear-gradient(180deg, var(--paper-alt) 0, var(--paper-alt) calc(100% - 240px), #fff calc(100% - 240px));
     }
-    /* 写真 = コンテナの 50%、段間 ≈ 3.7%（実測） */
     .hero-grid {
-      grid-template-columns: minmax(0, 1fr) 50%;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
       align-items: center;
-      gap: 40px;
+      gap: 48px;
     }
-    .hero-title {
-      line-height: 1.28;
+    .hero-main {
+      display: block;
     }
-    /* カンプ同様、チェック項目は横並びで流す（幅が足りない項目だけ次の行へ） */
+    .hero-btns {
+      margin-block-start: 34px;
+    }
+    .hero-btns .btn {
+      flex: 0 0 auto;
+      min-width: 220px;
+    }
     .hero-checks {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px 22px;
+      margin-block-start: 36px;
     }
     .hero-photo {
-      aspect-ratio: 1.91 / 1;
+      margin: 0;
+      border-radius: var(--radius-photo);
+      aspect-ratio: 4 / 4.2;
+      box-shadow: var(--shadow-md);
     }
     .hero-photo img {
-      object-position: 50% 30%;
+      object-position: 70% 40%;
     }
     .proof {
-      margin-block-start: 64px;
-      margin-block-end: -80px;
+      margin-block-start: 72px;
+      margin-block-end: -96px;
     }
     .proof-media {
       aspect-ratio: 16 / 10;
+    }
+  }
+  @media (min-width: 1120px) {
+    .hero-checks {
+      grid-template-columns: 1fr 1fr;
+    }
+    .hero-photo {
+      aspect-ratio: 1 / 1;
     }
   }
 </style>
